@@ -26,5 +26,6 @@ public class WeaponManager : MonoBehaviour
         }
         currentWeapon = Instantiate(weapon);
         currentWeapon.transform.SetParent(character.grabPoint.transform);
+        currentWeapon.GetComponent<Weapon>().equippedCharacter = gameObject;
     }
 }

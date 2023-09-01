@@ -9,11 +9,25 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        characterComponent = GetComponent<Character>();
     }
     // Update is called once per frame
     void Update()
     {
-        characterComponent = GetComponent<Character>();
+        MoveControl();
+        WeaponRotationControl();
+        AttackConctrol();
+    }
+    void AttackConctrol()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            GetComponent<WeaponManager>().currentWeapon.GetComponent<Weapon>().Attack();
+        }
+    }
+
+    void MoveControl()
+    {
         // Get the horizontal and vertical axis.
         // By default they are mapped to the arrow keys.
         // The value is in the range -1 to 1
@@ -25,9 +39,13 @@ public class Player : MonoBehaviour
         dy *= Time.deltaTime;
 
         transform.Translate(dx, dy, 0);
+    }
 
+    void WeaponRotationControl()
+    {
         var positionDelta = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        characterComponent.grabPoint.transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(positionDelta.y, positionDelta.x) * Mathf.Rad2Deg, Vector3.forward);
+        characterComponent.grabPoint.transform.rotation = Quaternion.LookRotation(Vector3.forward, positionDelta);
+
     }
 
     void PickupWeapon(GameObject weapon)
