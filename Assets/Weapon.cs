@@ -25,7 +25,7 @@ public class Weapon : MonoBehaviour
             var projectile = Instantiate(projectilePrefab, firePoint.position, equippedCharacter.transform.rotation);
             projectile.GetComponent<Projectile>().damage = damage;
             var rotation = equippedCharacter.GetComponent<Character>().grabPoint.transform.up;
-            projectile.GetComponent<Rigidbody2D>().AddForce(rotation * 100);
+            projectile.GetComponent<Rigidbody2D>().AddForce(rotation * projectile.GetComponent<Projectile>().speed);
             // projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
         }
     }

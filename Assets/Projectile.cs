@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public int damage;
-    public int speed = 100;
+    public int speed = 1000;
     public int expirationTimeSec = 5;
     // Start is called before the first frame update
     void Start()

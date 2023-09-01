@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     }
     void AttackConctrol()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             GetComponent<WeaponManager>().currentWeapon.GetComponent<Weapon>().Attack();
         }
