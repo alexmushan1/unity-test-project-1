@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -21,7 +20,7 @@ public class WeaponManager : MonoBehaviour
 
     public void ChangeWeapon(GameObject weapon)
     {
-        if (currentWeapon is not null)
+        if (currentWeapon != null)
         {
             Destroy(currentWeapon);
         }
