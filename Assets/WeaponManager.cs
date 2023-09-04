@@ -5,16 +5,14 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     public GameObject currentWeapon;
-    public Character character;
 
     // public WeaponManager(Character character, GameObject initialWeapon)
     // {
     //     this.character = character;
     //     ChangeWeapon(initialWeapon);
     // }
-    public void Init(Character character, GameObject initialWeapon)
+    public void Init(GameObject initialWeapon)
     {
-        this.character = character;
         ChangeWeapon(initialWeapon);
     }
 
@@ -25,7 +23,8 @@ public class WeaponManager : MonoBehaviour
             Destroy(currentWeapon);
         }
         currentWeapon = Instantiate(weapon);
-        currentWeapon.transform.SetParent(character.grabPoint.transform);
+        currentWeapon.transform.position = GetComponent<Character>().grabPoint.transform.position;
+        currentWeapon.transform.SetParent(GetComponent<Character>().grabPoint.transform);
         currentWeapon.GetComponent<Weapon>().equippedCharacter = gameObject;
     }
 }

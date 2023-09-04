@@ -44,12 +44,6 @@ public class Player : MonoBehaviour
     void WeaponRotationControl()
     {
         var positionDelta = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        characterComponent.grabPoint.transform.rotation = Quaternion.LookRotation(Vector3.forward, positionDelta);
-
-    }
-
-    void PickupWeapon(GameObject weapon)
-    {
-        characterComponent.weaponManager.ChangeWeapon(weapon);
+        characterComponent.RotateWeapon(Quaternion.LookRotation(Vector3.forward, positionDelta));
     }
 }
