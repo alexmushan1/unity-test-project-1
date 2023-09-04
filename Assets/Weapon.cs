@@ -23,9 +23,13 @@ public class Weapon : MonoBehaviour
         {
             var firePoint = transform.Find("FirePoint");
             var projectile = Instantiate(projectilePrefab, firePoint.position, equippedCharacter.transform.rotation);
-            projectile.GetComponent<Projectile>().damage = damage;
-            var rotation = equippedCharacter.GetComponent<Character>().grabPoint.transform.up;
-            projectile.GetComponent<Rigidbody2D>().AddForce(rotation * projectile.GetComponent<Projectile>().speed);
+            var projectileComponent = projectile.GetComponent<Projectile>();
+            var characterComponent = equippedCharacter.GetComponent<Character>();
+            projectileComponent.damage = damage;
+            projectile.transform.rotation = characterComponent.grabPoint.transform.rotation;
+            projectile.GetComponent<Rigidbody2D>().AddForce(
+                characterComponent.grabPoint.transform.up * projectileComponent.speed
+            );
             // projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
         }
     }
