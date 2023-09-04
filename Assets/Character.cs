@@ -8,6 +8,8 @@ public class Character : MonoBehaviour
     public WeaponManager weaponManager;
     public GameObject initialWeapon;
     public GameObject grabPoint;
+
+    bool hitImmune = false;
     // Start is called before the first frame update
     public void Start()
     {
@@ -33,5 +35,29 @@ public class Character : MonoBehaviour
     public void PickupWeapon(GameObject weapon)
     {
         weaponManager.ChangeWeapon(weapon);
+    }
+
+    public void Hit(int damage)
+    {
+        if (hitImmune)
+        {
+            return;
+        }
+        var healthComponent = GetComponent<Health>();
+        if (damage >= healthComponent.currentHealth)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        healthComponent.currentHealth -= damage;
+        GetComponent<SpriteRenderer>().color = Color.red;
+        Invoke(nameof(AfterHitImmune), 1);
+        hitImmune = true;
+    }
+
+    void AfterHitImmune()
+    {
+        GetComponent<SpriteRenderer>().color = Color.white;
+        hitImmune = false;
     }
 }

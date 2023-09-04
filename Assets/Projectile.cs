@@ -18,11 +18,12 @@ public class Projectile : MonoBehaviour
     {
     }
 
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.CompareTag("Enemy"))
-    //     {
-    //         collision.gameObject.SendMessage("ApplyDamage", 10);
-    //     }
-    // }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<Character>().Hit(damage);
+            Destroy(gameObject);
+        }
+    }
 }
