@@ -24,6 +24,19 @@ public class Character : MonoBehaviour
     {
     }
 
+    public void Move(float x, float y)
+    {
+        transform.Translate(x, y, 0);
+        if (x == 0 && y == 0)
+        {
+            GetComponent<Animator>().SetBool("running", false);
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("running", true);
+        }
+    }
+
     public void RotateWeapon(Quaternion rotation)
     {
         grabPoint.transform.rotation = rotation;

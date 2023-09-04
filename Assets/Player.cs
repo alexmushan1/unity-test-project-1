@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         dx *= Time.deltaTime;
         dy *= Time.deltaTime;
 
-        transform.Translate(dx, dy, 0);
+        characterComponent.Move(dx, dy);
     }
 
     void WeaponRotationControl()
