@@ -26,9 +26,9 @@ public class Weapon : MonoBehaviour
             var projectileComponent = projectile.GetComponent<Projectile>();
             var characterComponent = equippedCharacter.GetComponent<Character>();
             projectileComponent.damage = damage;
-            projectile.transform.rotation = characterComponent.grabPoint.transform.rotation;
+            projectile.transform.rotation = characterComponent.grabPointTransform.rotation;
             projectile.GetComponent<Rigidbody2D>().AddForce(
-                characterComponent.grabPoint.transform.up * projectileComponent.speed
+                characterComponent.grabPointTransform.up * projectileComponent.speed
             );
             // projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
         }

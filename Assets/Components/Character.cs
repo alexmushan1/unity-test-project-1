@@ -8,14 +8,18 @@ public class Character : MonoBehaviour
     public float speed = 10.0f;
     public WeaponManager weaponManager;
     public GameObject initialWeapon;
-    public GameObject grabPoint;
+    public Transform grabPointTransform;
+    public Transform bodyTransform;
+    public Transform headTransform;
 
     bool hitImmune = false;
     // Start is called before the first frame update
     public void Start()
     {
         // grabPoint = GameObject.Find("GrabPoint");
-        grabPoint = transform.Find("GrabPoint").gameObject;
+        grabPointTransform = transform.Find("GrabPoint");
+        bodyTransform = transform.Find("Body");
+        headTransform = transform.Find("Head");
         // weaponManager = new WeaponManager(this, initialWeapon);
         weaponManager = gameObject.AddComponent<WeaponManager>();
         weaponManager.Init(initialWeapon);
@@ -31,24 +35,24 @@ public class Character : MonoBehaviour
         transform.Translate(movement);
         if (movement.x == 0 && movement.y == 0)
         {
-            transform.Find("Body").GetComponent<Animator>().SetBool("running", false);
+            bodyTransform.GetComponent<Animator>().SetBool("running", false);
         }
         else
         {
-            transform.Find("Body").GetComponent<Animator>().SetBool("running", true);
+            bodyTransform.GetComponent<Animator>().SetBool("running", true);
         }
         if (movement.x != 0)
         {
-            transform.Find("Body").GetComponent<SpriteRenderer>().flipX = movement.x < 0;
+            bodyTransform.GetComponent<SpriteRenderer>().flipX = movement.x < 0;
         }
     }
 
     public void RotateWeapon(Quaternion rotation)
     {
-        grabPoint.transform.rotation = rotation;
+        grabPointTransform.rotation = rotation;
         var shouldFlip = rotation.eulerAngles.z < 180;
         // GetComponent<SpriteRenderer>().flipX = shouldFlip;
-        transform.Find("Head").GetComponent<SpriteRenderer>().flipX = shouldFlip;
+        headTransform.GetComponent<SpriteRenderer>().flipX = shouldFlip;
         weaponManager.currentWeapon.GetComponent<SpriteRenderer>().flipX = shouldFlip;
     }
 
@@ -70,16 +74,16 @@ public class Character : MonoBehaviour
             return;
         }
         healthComponent.currentHealth -= damage;
-        transform.Find("Head").GetComponent<SpriteRenderer>().color = Color.red;
-        transform.Find("Body").GetComponent<SpriteRenderer>().color = Color.red;
+        headTransform.GetComponent<SpriteRenderer>().color = Color.red;
+        bodyTransform.GetComponent<SpriteRenderer>().color = Color.red;
         Invoke(nameof(AfterHitImmune), 1);
         hitImmune = true;
     }
 
     void AfterHitImmune()
     {
-        transform.Find("Head").GetComponent<SpriteRenderer>().color = Color.white;
-        transform.Find("Body").GetComponent<SpriteRenderer>().color = Color.white;
+        headTransform.GetComponent<SpriteRenderer>().color = Color.white;
+        bodyTransform.GetComponent<SpriteRenderer>().color = Color.white;
         hitImmune = false;
     }
 }
