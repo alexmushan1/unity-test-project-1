@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -28,9 +29,12 @@ public class Player : MonoBehaviour
 
     void MoveControl()
     {
-        float dx = Input.GetAxisRaw("Horizontal") * Time.deltaTime;
-        float dy = Input.GetAxisRaw("Vertical") * Time.deltaTime;
-        characterComponent.Move(dx, dy);
+        var movement = new Vector2(
+            Input.GetAxisRaw("Horizontal"),
+            Input.GetAxisRaw("Vertical")
+        );
+        movement = movement.normalized * Time.deltaTime;
+        characterComponent.Move(movement);
     }
 
     void WeaponRotationControl()
