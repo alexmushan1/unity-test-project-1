@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    // units per second
     public float speed = 10.0f;
     public WeaponManager weaponManager;
     public GameObject initialWeapon;
@@ -26,7 +27,7 @@ public class Character : MonoBehaviour
 
     public void Move(float x, float y)
     {
-        transform.Translate(x, y, 0);
+        transform.Translate(x * speed, y * speed, 0);
         if (x == 0 && y == 0)
         {
             GetComponent<Animator>().SetBool("running", false);

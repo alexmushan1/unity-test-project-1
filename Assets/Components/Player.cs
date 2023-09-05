@@ -28,16 +28,8 @@ public class Player : MonoBehaviour
 
     void MoveControl()
     {
-        // Get the horizontal and vertical axis.
-        // By default they are mapped to the arrow keys.
-        // The value is in the range -1 to 1
-        float dx = Input.GetAxisRaw("Horizontal") * characterComponent.speed;
-        float dy = Input.GetAxisRaw("Vertical") * characterComponent.speed;
-
-        // Make it move 10 meters per second instead of 10 meters per frame...
-        dx *= Time.deltaTime;
-        dy *= Time.deltaTime;
-
+        float dx = Input.GetAxisRaw("Horizontal") * Time.deltaTime;
+        float dy = Input.GetAxisRaw("Vertical") * Time.deltaTime;
         characterComponent.Move(dx, dy);
     }
 
