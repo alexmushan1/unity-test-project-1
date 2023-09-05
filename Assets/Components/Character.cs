@@ -31,11 +31,15 @@ public class Character : MonoBehaviour
         transform.Translate(movement);
         if (movement.x == 0 && movement.y == 0)
         {
-            GetComponent<Animator>().SetBool("running", false);
+            transform.Find("Body").GetComponent<Animator>().SetBool("running", false);
         }
         else
         {
-            GetComponent<Animator>().SetBool("running", true);
+            transform.Find("Body").GetComponent<Animator>().SetBool("running", true);
+        }
+        if (movement.x != 0)
+        {
+            transform.Find("Body").GetComponent<SpriteRenderer>().flipX = movement.x < 0;
         }
     }
 
@@ -43,7 +47,8 @@ public class Character : MonoBehaviour
     {
         grabPoint.transform.rotation = rotation;
         var shouldFlip = rotation.eulerAngles.z < 180;
-        GetComponent<SpriteRenderer>().flipX = shouldFlip;
+        // GetComponent<SpriteRenderer>().flipX = shouldFlip;
+        transform.Find("Head").GetComponent<SpriteRenderer>().flipX = shouldFlip;
         weaponManager.currentWeapon.GetComponent<SpriteRenderer>().flipX = shouldFlip;
     }
 
@@ -65,14 +70,16 @@ public class Character : MonoBehaviour
             return;
         }
         healthComponent.currentHealth -= damage;
-        GetComponent<SpriteRenderer>().color = Color.red;
+        transform.Find("Head").GetComponent<SpriteRenderer>().color = Color.red;
+        transform.Find("Body").GetComponent<SpriteRenderer>().color = Color.red;
         Invoke(nameof(AfterHitImmune), 1);
         hitImmune = true;
     }
 
     void AfterHitImmune()
     {
-        GetComponent<SpriteRenderer>().color = Color.white;
+        transform.Find("Head").GetComponent<SpriteRenderer>().color = Color.white;
+        transform.Find("Body").GetComponent<SpriteRenderer>().color = Color.white;
         hitImmune = false;
     }
 }
