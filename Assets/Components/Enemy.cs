@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     void HandleRotateWeapon()
     {
-        GetComponent<Character>().RotateWeapon(Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position));
+        GetComponent<Character>().RotateHeadAndWeapon(Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position));
     }
 
     Vector2 lastMovement;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    Color LIGHT_ON_HIT_RED = new(1, 0.5f, 0.5f);
+    readonly Color LIGHT_ON_HIT_RED = new(1, 0.5f, 0.5f);
 
     // units per second
     public float speed = 10.0f;
@@ -14,7 +14,10 @@ public class Character : MonoBehaviour
     public Transform bodyTransform;
     public Transform headTransform;
 
+    public bool shouldRotateWeapon = true;
+
     bool hitImmune = false;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -22,6 +25,7 @@ public class Character : MonoBehaviour
         grabPointTransform = transform.Find("GrabPoint");
         bodyTransform = transform.Find("Body");
         headTransform = transform.Find("Head");
+
         // weaponManager = new WeaponManager(this, initialWeapon);
         weaponManager = gameObject.AddComponent<WeaponManager>();
         weaponManager.Init(initialWeapon);
@@ -49,11 +53,14 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void RotateWeapon(Quaternion rotation)
+    public void RotateHeadAndWeapon(Quaternion rotation)
     {
+        if (!shouldRotateWeapon)
+        {
+            return;
+        }
         grabPointTransform.rotation = rotation;
         var shouldFlip = rotation.eulerAngles.z < 180;
-        // GetComponent<SpriteRenderer>().flipX = shouldFlip;
         headTransform.GetComponent<SpriteRenderer>().flipX = shouldFlip;
         weaponManager.currentWeapon.GetComponent<SpriteRenderer>().flipX = shouldFlip;
     }
