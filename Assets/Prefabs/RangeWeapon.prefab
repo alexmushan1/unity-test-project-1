@@ -103,6 +103,7 @@ MonoBehaviour:
   range: 0
   equippedCharacter: {fileID: 0}
   projectilePrefab: {fileID: 4797313488220542134, guid: cfbdec8c6c78dc94d9f7768919da7fa8, type: 3}
+  weaponType: 2
 --- !u!1 &4488953542784621650
 GameObject:
   m_ObjectHideFlags: 0
