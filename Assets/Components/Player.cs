@@ -33,8 +33,7 @@ public class Player : MonoBehaviour
             Input.GetAxisRaw("Horizontal"),
             Input.GetAxisRaw("Vertical")
         );
-        movement = movement.normalized * Time.deltaTime;
-        characterComponent.Move(movement);
+        characterComponent.Move(movement.normalized, Time.deltaTime);
     }
 
     void WeaponRotationControl()

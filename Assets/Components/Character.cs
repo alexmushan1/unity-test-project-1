@@ -25,9 +25,10 @@ public class Character : MonoBehaviour
     {
     }
 
-    public void Move(Vector2 movement)
+    public void Move(Vector2 normalizedMovement, float deltaTime)
     {
-        transform.Translate(movement * speed);
+        var movement = deltaTime * speed * normalizedMovement;
+        transform.Translate(movement);
         if (movement.x == 0 && movement.y == 0)
         {
             GetComponent<Animator>().SetBool("running", false);
