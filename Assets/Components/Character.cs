@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    Color LIGHT_ON_HIT_RED = new(1, 0.5f, 0.5f);
+
     // units per second
     public float speed = 10.0f;
     public WeaponManager weaponManager;
@@ -33,7 +35,7 @@ public class Character : MonoBehaviour
     {
         var movement = deltaTime * speed * normalizedMovement;
         transform.Translate(movement);
-        if (movement.x == 0 && movement.y == 0)
+        if (movement == Vector2.zero)
         {
             bodyTransform.GetComponent<Animator>().SetBool("running", false);
         }
@@ -74,9 +76,8 @@ public class Character : MonoBehaviour
             return;
         }
         healthComponent.currentHealth -= damage;
-        var light_red = new Color(1, 0.5f, 0.5f);
-        headTransform.GetComponent<SpriteRenderer>().color = light_red;
-        bodyTransform.GetComponent<SpriteRenderer>().color = light_red;
+        headTransform.GetComponent<SpriteRenderer>().color = LIGHT_ON_HIT_RED;
+        bodyTransform.GetComponent<SpriteRenderer>().color = LIGHT_ON_HIT_RED;
         Invoke(nameof(AfterHitImmune), 0.1f);
         hitImmune = true;
     }
