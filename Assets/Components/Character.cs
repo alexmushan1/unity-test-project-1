@@ -74,9 +74,10 @@ public class Character : MonoBehaviour
             return;
         }
         healthComponent.currentHealth -= damage;
-        headTransform.GetComponent<SpriteRenderer>().color = Color.red;
-        bodyTransform.GetComponent<SpriteRenderer>().color = Color.red;
-        Invoke(nameof(AfterHitImmune), 1);
+        var light_red = new Color(1, 0.5f, 0.5f);
+        headTransform.GetComponent<SpriteRenderer>().color = light_red;
+        bodyTransform.GetComponent<SpriteRenderer>().color = light_red;
+        Invoke(nameof(AfterHitImmune), 0.1f);
         hitImmune = true;
     }
 
