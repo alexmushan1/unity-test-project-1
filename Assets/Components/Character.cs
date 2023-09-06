@@ -55,10 +55,6 @@ public class Character : MonoBehaviour
 
     public void RotateHeadAndWeapon(Quaternion rotation)
     {
-        if (!shouldRotateWeapon)
-        {
-            return;
-        }
         grabPointTransform.rotation = rotation;
         var shouldFlip = rotation.eulerAngles.z < 180;
         headTransform.GetComponent<SpriteRenderer>().flipX = shouldFlip;

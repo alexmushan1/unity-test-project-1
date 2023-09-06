@@ -19,14 +19,18 @@ public class Weapon : MonoBehaviour
     public GameObject projectilePrefab;
     public bool isAttacking = false;
     private float lastAttackTimeSec = 0;
-    bool shouldDoThrustAnimation = false;
-    public int THRUST_SPEED = 40;
+    public int thrustSpeed = 40;
+    public int slashRotateSpeed = 600;
+    public bool shouldFlipSlashRotation = false;
+    public int slashMaxAngleDeg = 360;
+    float passedSlashAngleDeg;
+    System.Action animateFunction;
 
     void Update()
     {
-        if (shouldDoThrustAnimation)
+        if (animateFunction is not null)
         {
-            ThrustAttackAnimate();
+            animateFunction();
         }
     }
 
@@ -40,6 +44,7 @@ public class Weapon : MonoBehaviour
         switch (weaponType)
         {
             case WeaponType.Slash:
+                SlashAttack();
                 break;
             case WeaponType.Thrust:
                 ThrustAttack();
@@ -52,24 +57,25 @@ public class Weapon : MonoBehaviour
 
     void ThrustAttack()
     {
+        animateFunction = ThrustAttackAnimate;
         isAttacking = true;
-        shouldDoThrustAnimation = true;
         thrustGoOff = true;
         var characterComponent = equippedCharacter.GetComponent<Character>();
         characterComponent.shouldRotateWeapon = false;
     }
 
     bool thrustGoOff;
+
     void ThrustAttackAnimate()
     {
         if (thrustGoOff && transform.localPosition.y < range)
         {
-            transform.localPosition += new Vector3(0, THRUST_SPEED, 0) * Time.deltaTime;
+            transform.localPosition += new Vector3(0, thrustSpeed, 0) * Time.deltaTime;
         }
         else
         {
             thrustGoOff = false;
-            transform.localPosition += new Vector3(0, -THRUST_SPEED, 0) * Time.deltaTime;
+            transform.localPosition += new Vector3(0, -thrustSpeed, 0) * Time.deltaTime;
             if (transform.localPosition.y <= 0)
             {
                 transform.localPosition = Vector3.zero;
@@ -81,7 +87,43 @@ public class Weapon : MonoBehaviour
     void DoneThrustAttack()
     {
         isAttacking = false;
-        shouldDoThrustAnimation = false;
+        animateFunction = null;
+        var characterComponent = equippedCharacter.GetComponent<Character>();
+        characterComponent.shouldRotateWeapon = true;
+    }
+
+    void SlashAttack()
+    {
+        animateFunction = SlashAttackAnimate;
+        isAttacking = true;
+        var characterComponent = equippedCharacter.GetComponent<Character>();
+        characterComponent.shouldRotateWeapon = false;
+        passedSlashAngleDeg = 0;
+        shouldFlipSlashRotation = Mathf.Abs(characterComponent.grabPointTransform.rotation.eulerAngles.z) > 180;
+    }
+
+    void SlashAttackAnimate()
+    {
+        var characterComponent = equippedCharacter.GetComponent<Character>();
+        var oldAngle = characterComponent.grabPointTransform.rotation.eulerAngles.z;
+        var deltaAngle = (shouldFlipSlashRotation ? -slashRotateSpeed : slashRotateSpeed) * Time.deltaTime;
+        var newAngle = oldAngle + deltaAngle;
+        passedSlashAngleDeg += Mathf.Abs(deltaAngle);
+        // characterComponent.RotateHeadAndWeapon(
+        //     Quaternion.AngleAxis(newAngle, Vector3.forward)
+        // );
+        characterComponent.grabPointTransform.rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
+        if (passedSlashAngleDeg > slashMaxAngleDeg)
+        {
+
+            DoneSlashAttack();
+        }
+    }
+
+    void DoneSlashAttack()
+    {
+        isAttacking = false;
+        animateFunction = null;
         var characterComponent = equippedCharacter.GetComponent<Character>();
         characterComponent.shouldRotateWeapon = true;
     }
