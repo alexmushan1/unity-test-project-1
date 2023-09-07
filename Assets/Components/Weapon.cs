@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
     public float attackCooldownSec = 0.2f;
     public int range = 5;
     public GameObject equippedCharacter;
-    public GameObject projectilePrefab;
+    public GameObject? projectilePrefab;
     public bool isAttacking = false;
     private float lastAttackTimeSec = 0;
     public int thrustSpeed = 40;
@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     public bool shouldFlipSlashRotation = false;
     public int slashMaxAngleDeg = 360;
     float passedSlashAngleDeg;
-    System.Action animateFunction;
+    System.Action? animateFunction;
 
     void Update()
     {
@@ -143,7 +143,7 @@ public class Weapon : MonoBehaviour
     void RangedAttack()
     {
         var firePoint = transform.Find("FirePoint");
-        var projectile = Instantiate(projectilePrefab, firePoint.position, equippedCharacter.transform.rotation);
+        var projectile = Instantiate(projectilePrefab, firePoint.position, equippedCharacter.transform.rotation)!;
         var projectileComponent = projectile.GetComponent<Projectile>();
         var characterComponent = equippedCharacter.GetComponent<Character>();
         projectileComponent.damage = damage;
