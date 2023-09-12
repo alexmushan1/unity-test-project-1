@@ -36,7 +36,7 @@ public class Weapon : MonoBehaviour
 
     public void Attack()
     {
-        if (isAttacking || Time.time - lastAttackTimeSec < attackCooldownSec)
+        if (isAttacking || (lastAttackTimeSec != 0 && Time.time - lastAttackTimeSec < attackCooldownSec))
         {
             return;
         }
