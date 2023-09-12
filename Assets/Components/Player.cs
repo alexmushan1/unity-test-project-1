@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            GetComponent<WeaponManager>().currentWeapon.GetComponent<Weapon>().Attack();
+            GetComponent<WeaponManager>().Attack();
         }
     }
 

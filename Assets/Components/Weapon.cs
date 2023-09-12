@@ -13,8 +13,8 @@ public class Weapon : MonoBehaviour
 
     public WeaponType weaponType;
     public int damage = 10;
-    public float attackCooldownSec = 0.2f;
-    public int range = 5;
+    public float attackCooldownSec = 1f;
+    public int range = 0;
     public GameObject equippedCharacter;
     public GameObject? projectilePrefab;
     public bool isAttacking = false;
@@ -134,7 +134,7 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.collider != equippedCharacter && collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Character>().Hit(damage);
         }
@@ -147,6 +147,7 @@ public class Weapon : MonoBehaviour
         var projectileComponent = projectile.GetComponent<Projectile>();
         var characterComponent = equippedCharacter.GetComponent<Character>();
         projectileComponent.damage = damage;
+        projectileComponent.fromCharacter = equippedCharacter;
         projectile.transform.rotation = characterComponent.grabPointTransform.rotation;
         projectile.GetComponent<Rigidbody2D>().AddForce(
             characterComponent.grabPointTransform.up * projectileComponent.speed

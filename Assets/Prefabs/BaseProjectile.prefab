@@ -49,8 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  speed: 2000
-  expirationTimeSec: 5
+  speed: 3000
+  expirationTimeSec: 3
+  fromCharacter: {fileID: 0}
 --- !u!50 &174914646901921325
 Rigidbody2D:
   serializedVersion: 4

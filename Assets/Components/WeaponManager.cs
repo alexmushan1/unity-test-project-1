@@ -29,4 +29,9 @@ public class WeaponManager : MonoBehaviour
         currentWeapon.transform.localPosition = initialPosition;
         currentWeapon.GetComponent<Weapon>().equippedCharacter = gameObject;
     }
+
+    public void Attack()
+    {
+        currentWeapon.GetComponent<Weapon>().Attack();
+    }
 }

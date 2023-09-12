@@ -16,6 +16,12 @@ public class Enemy : MonoBehaviour
     {
         HandleRotateWeapon();
         HandleMove();
+        TryFire();
+    }
+
+    void TryFire()
+    {
+        GetComponent<WeaponManager>().Attack();
     }
 
     void HandleRotateWeapon()

@@ -5,8 +5,9 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public int damage;
-    public int speed = 500;
-    public int expirationTimeSec = 5;
+    public int speed = 3000;
+    public int expirationTimeSec = 3;
+    public GameObject fromCharacter;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject != fromCharacter && collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Character>().Hit(damage);
             Destroy(gameObject);

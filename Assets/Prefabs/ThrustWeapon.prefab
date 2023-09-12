@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: -1601470625697406631, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
+      propertyPath: attackCooldownSec
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 256196966929886321, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: m_Name
       value: ThrustWeapon
@@ -137,7 +141,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2.2646322}
+  m_Offset: {x: -0.084221184, y: 2.327798}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -148,5 +152,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.05, y: 2.4307358}
+  m_Size: {x: 0.6850414, y: 2.023666}
   m_EdgeRadius: 0
