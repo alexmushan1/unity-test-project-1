@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 2
-  damage: 50
-  attackCooldownSec: 2.3
+  damage: 40
+  attackCooldownSec: 2
   range: 90
   equippedCharacter: {fileID: 0}
   projectilePrefab: {fileID: 4797313488220542134, guid: cfbdec8c6c78dc94d9f7768919da7fa8, type: 3}
