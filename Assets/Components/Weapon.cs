@@ -26,6 +26,16 @@ public class Weapon : MonoBehaviour
     float passedSlashAngleDeg;
     System.Action? animateFunction;
 
+    void Start()
+    {
+        var collider = GetComponent<Collider2D>();
+        if (collider)
+        {
+
+            collider.enabled = true;
+        }
+    }
+
     void Update()
     {
         if (animateFunction is not null)
@@ -55,11 +65,21 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    void BaseMeleeAttackDone()
+    {
+        isAttacking = false;
+        animateFunction = null;
+        GetComponent<Collider2D>().enabled = false;
+        var characterComponent = equippedCharacter.GetComponent<Character>();
+        characterComponent.shouldRotateWeapon = true;
+    }
+
     void ThrustAttack()
     {
         animateFunction = ThrustAttackAnimate;
         isAttacking = true;
         thrustGoOff = true;
+        GetComponent<Collider2D>().enabled = true;
         var characterComponent = equippedCharacter.GetComponent<Character>();
         characterComponent.shouldRotateWeapon = false;
     }
@@ -86,16 +106,14 @@ public class Weapon : MonoBehaviour
 
     void DoneThrustAttack()
     {
-        isAttacking = false;
-        animateFunction = null;
-        var characterComponent = equippedCharacter.GetComponent<Character>();
-        characterComponent.shouldRotateWeapon = true;
+        BaseMeleeAttackDone();
     }
 
     void SlashAttack()
     {
         animateFunction = SlashAttackAnimate;
         isAttacking = true;
+        GetComponent<Collider2D>().enabled = true;
         var characterComponent = equippedCharacter.GetComponent<Character>();
         characterComponent.shouldRotateWeapon = false;
         passedSlashAngleDeg = 0;
@@ -115,25 +133,17 @@ public class Weapon : MonoBehaviour
         characterComponent.grabPointTransform.rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
         if (passedSlashAngleDeg > slashMaxAngleDeg)
         {
-
             DoneSlashAttack();
         }
     }
 
     void DoneSlashAttack()
     {
-        isAttacking = false;
-        animateFunction = null;
-        var characterComponent = equippedCharacter.GetComponent<Character>();
-        characterComponent.shouldRotateWeapon = true;
+        BaseMeleeAttackDone();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isAttacking)
-        {
-            return;
-        }
         if (collision.collider != equippedCharacter && collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Character>().Hit(damage);
