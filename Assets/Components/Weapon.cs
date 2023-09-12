@@ -31,8 +31,7 @@ public class Weapon : MonoBehaviour
         var collider = GetComponent<Collider2D>();
         if (collider)
         {
-
-            collider.enabled = true;
+            collider.enabled = false;
         }
     }
 
