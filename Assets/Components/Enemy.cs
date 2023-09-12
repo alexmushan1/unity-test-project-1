@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
             GetComponent<Character>().Move(lastMovement, Time.deltaTime);
             return;
         }
-        if (Random.value < (GetCurrentWeaponType() == Weapon.WeaponType.Ranged ? 0.3 : 0.7))
+        if (Random.value < (GetCurrentWeaponType() == Weapon.WeaponType.Ranged ? 0.2 : 0.7))
         {
             lastMovement = (player.transform.position - transform.position).normalized;
         }
