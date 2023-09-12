@@ -98,12 +98,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8d26be018e96d4eacac6aad143d96c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  weaponType: 2
+  damage: 5
   attackCooldownSec: 0.5
   range: 0
   equippedCharacter: {fileID: 0}
   projectilePrefab: {fileID: 4797313488220542134, guid: cfbdec8c6c78dc94d9f7768919da7fa8, type: 3}
-  weaponType: 2
+  isAttacking: 0
+  thrustSpeed: 40
+  slashRotateSpeed: 600
+  shouldFlipSlashRotation: 0
+  slashMaxAngleDeg: 360
 --- !u!1 &4488953542784621650
 GameObject:
   m_ObjectHideFlags: 0
