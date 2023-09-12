@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 538316522906377999}
   - component: {fileID: -1601470625697406631}
   m_Layer: 0
-  m_Name: RangeWeapon
+  m_Name: RW Bad Musket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
