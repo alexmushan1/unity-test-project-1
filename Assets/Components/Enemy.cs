@@ -40,12 +40,12 @@ public class Enemy : MonoBehaviour
     float lastMoveTimeSec = 0;
     void HandleMove()
     {
-        if (lastMoveTimeSec != 0 && Time.time - lastMoveTimeSec < 1)
+        if (lastMoveTimeSec != 0 && Time.time - lastMoveTimeSec < 0.5)
         {
             GetComponent<Character>().Move(lastMovement, Time.deltaTime);
             return;
         }
-        if (Random.value < 0.5)
+        if (Random.value < (GetCurrentWeaponType() == Weapon.WeaponType.Ranged ? 0.3 : 0.7))
         {
             lastMovement = (player.transform.position - transform.position).normalized;
         }
@@ -55,5 +55,10 @@ public class Enemy : MonoBehaviour
         }
         lastMoveTimeSec = Time.time;
         GetComponent<Character>().Move(lastMovement, Time.deltaTime);
+    }
+
+    Weapon.WeaponType GetCurrentWeaponType()
+    {
+        return GetComponent<WeaponManager>().currentWeapon.GetComponent<Weapon>().weaponType;
     }
 }
