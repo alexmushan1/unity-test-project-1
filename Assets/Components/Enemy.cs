@@ -21,7 +21,10 @@ public class Enemy : MonoBehaviour
 
     void TryFire()
     {
-        GetComponent<WeaponManager>().Attack();
+        if ((transform.position - GameObject.Find("Player").transform.position).magnitude < GetComponent<WeaponManager>().currentWeapon.GetComponent<Weapon>().range + 20)
+        {
+            GetComponent<WeaponManager>().Attack();
+        }
     }
 
     void HandleRotateWeapon()
