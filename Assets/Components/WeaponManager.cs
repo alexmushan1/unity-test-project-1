@@ -13,7 +13,7 @@ public class WeaponManager : MonoBehaviour
     // }
     public void Init(GameObject initialWeapon)
     {
-        ChangeWeapon(initialWeapon);
+        ChangeWeapon(Instantiate(initialWeapon));
     }
 
     public void ChangeWeapon(GameObject weapon)
@@ -23,7 +23,7 @@ public class WeaponManager : MonoBehaviour
             // Destroy(currentWeapon);
             currentWeapon.GetComponent<Weapon>().PickupBy(null);
         }
-        currentWeapon = Instantiate(weapon);
+        currentWeapon = weapon;
         currentWeapon.GetComponent<Weapon>().PickupBy(gameObject);
     }
 
