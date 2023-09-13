@@ -7,11 +7,9 @@ public class CameraController : MonoBehaviour
 
     GameObject player;
     Camera mainCamera;
-    float zoomSpeed = 30.0f;
-
-    float minZoom = 10.0f;
-
-    float maxZoom = 100.0f;
+    public float zoomSpeed = 30.0f;
+    public float minZoom = 10.0f;
+    public float maxZoom = 100.0f;
 
     void Start()
     {
@@ -20,6 +18,15 @@ public class CameraController : MonoBehaviour
     }
 
     void Update()
+    {
+        if (!GlobalControl.isPaused)
+        {
+            HandleUserInput();
+        }
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+    }
+
+    void HandleUserInput()
     {
         // Zoom input from the mouse scroll wheel
         float zoomInput = Input.GetAxis("Mouse ScrollWheel");
@@ -35,6 +42,5 @@ public class CameraController : MonoBehaviour
                 mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView - zoomInput * zoomSpeed, minZoom, maxZoom);
             }
         }
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
     }
 }

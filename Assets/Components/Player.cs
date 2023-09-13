@@ -15,10 +15,20 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GlobalControl.isPaused)
+        {
+
+            HandleUserInput();
+        }
+    }
+
+    void HandleUserInput()
+    {
         MoveControl();
         WeaponRotationControl();
         AttackConctrol();
     }
+
     void AttackConctrol()
     {
         if (Input.GetMouseButton(0))
