@@ -11,7 +11,7 @@ public class GlobalControl : MonoBehaviour
     void Start()
     {
         pauseScreen = GameObject.Find("PauseScreen");
-        pauseScreen.SetActive(false);
+        SetPause(false);
     }
 
     void Update()
@@ -24,7 +24,12 @@ public class GlobalControl : MonoBehaviour
 
     void TogglePause()
     {
-        isPaused = !isPaused;
+        SetPause(!isPaused);
+    }
+
+    void SetPause(bool shouldPause)
+    {
+        isPaused = shouldPause;
         pauseScreen.SetActive(isPaused);
         if (isPaused)
         {
