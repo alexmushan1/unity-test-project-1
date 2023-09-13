@@ -5,10 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     GameObject player;
+    Character characterComponent;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
+        characterComponent = GetComponent<Character>();
     }
 
     // Update is called once per frame
@@ -29,10 +31,10 @@ public class Enemy : MonoBehaviour
 
     void HandleRotateWeapon()
     {
-        if (GetComponent<Character>().shouldRotateWeapon)
+        if (characterComponent.shouldRotateWeapon)
         {
 
-            GetComponent<Character>().RotateHeadAndWeapon(Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position));
+            characterComponent.RotateHeadAndWeapon(Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position));
         }
     }
 
@@ -42,7 +44,7 @@ public class Enemy : MonoBehaviour
     {
         if (lastMoveTimeSec != 0 && Time.time - lastMoveTimeSec < 0.5)
         {
-            GetComponent<Character>().Move(lastMovement, Time.deltaTime);
+            characterComponent.Move(lastMovement, Time.deltaTime);
             return;
         }
         if (Random.value < (GetCurrentWeaponType() == Weapon.WeaponType.Ranged ? 0.2 : 0.7))
@@ -54,7 +56,7 @@ public class Enemy : MonoBehaviour
             lastMovement = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
         }
         lastMoveTimeSec = Time.time;
-        GetComponent<Character>().Move(lastMovement, Time.deltaTime);
+        characterComponent.Move(lastMovement, Time.deltaTime);
     }
 
     Weapon.WeaponType GetCurrentWeaponType()
