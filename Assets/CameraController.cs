@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    GameObject player;
+
     void Start()
     {
-
+        player = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        var player = GameObject.Find("Player");
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
     }
 }
