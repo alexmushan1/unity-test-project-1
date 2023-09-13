@@ -42,6 +42,9 @@ public class Character : MonoBehaviour
         if (movement == Vector2.zero)
         {
             bodyTransform.GetComponent<Animator>().SetBool("running", false);
+            Vector3 bodyTilt = new Vector3(0, 0, 0);//reset tilt
+            Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
+            bodyTransform.localRotation = bodyRotation;
         }
         else
         {
@@ -49,6 +52,23 @@ public class Character : MonoBehaviour
         }
         if (movement.x != 0)
         {
+            if (movement.x <= 0) //move left
+            {
+                Vector3 headPos = new Vector3(-1.2f, 4, 0);
+                headTransform.localPosition = headPos;
+                Vector3 bodyTilt = new Vector3(0, 0, 5);
+                Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
+                bodyTransform.localRotation = bodyRotation;
+            }
+            else //move right
+            {
+                Vector3 headPos = new Vector3(1.2f, 4, 0);
+                headTransform.localPosition = headPos;
+                Vector3 bodyTilt = new Vector3(0, 0, -5);
+                Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
+                bodyTransform.localRotation = bodyRotation;
+            }
+
             bodyTransform.GetComponent<SpriteRenderer>().flipX = movement.x < 0;
         }
     }
