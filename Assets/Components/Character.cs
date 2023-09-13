@@ -39,14 +39,14 @@ public class Character : MonoBehaviour
     {
         var movement = deltaTime * speed * normalizedMovement;
         transform.Translate(movement);
-        if (movement == Vector2.zero)
+        if (movement == Vector2.zero) //when not moving
         {
             bodyTransform.GetComponent<Animator>().SetBool("running", false);
             Vector3 bodyTilt = new Vector3(0, 0, 0);//reset tilt
             Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
             bodyTransform.localRotation = bodyRotation;
         }
-        else
+        else //when moving
         {
             bodyTransform.GetComponent<Animator>().SetBool("running", true);
         }
