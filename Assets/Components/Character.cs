@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
 
     // units per second
     public float speed = 10.0f;
+    public float weaponPickupRange = 20;
     public WeaponManager weaponManager;
     public GameObject initialWeapon;
     public Transform grabPointTransform;

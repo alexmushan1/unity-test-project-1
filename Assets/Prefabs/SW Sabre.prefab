@@ -21,6 +21,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2602241561916043869, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
+      propertyPath: grabOffset.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2602241561916043869, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
       propertyPath: slashMaxAngleDeg
       value: 360
       objectReference: {fileID: 0}
@@ -62,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 82da2d09566c5bc439ee987fca22b09d, type: 3}
     - target: {fileID: 5644518665861037941, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
       propertyPath: m_Name
-      value: SlashWeapon
+      value: SW Sabre
       objectReference: {fileID: 0}
     - target: {fileID: 5965548493445502154, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -103,6 +107,26 @@ PrefabInstance:
     - target: {fileID: 5965548493445502154, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144075886112351157, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
+      propertyPath: m_Size.x
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144075886112351157, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
+      propertyPath: m_Size.y
+      value: 4.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144075886112351157, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144075886112351157, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144075886112351157, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 4.51
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

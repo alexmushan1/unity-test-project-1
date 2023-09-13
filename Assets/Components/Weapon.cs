@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -12,10 +13,11 @@ public class Weapon : MonoBehaviour
     }
 
     public WeaponType weaponType;
+    public Vector2 grabOffset = Vector2.zero;
     public int damage = 10;
     public float attackCooldownSec = 1f;
     public int range = 0;
-    public GameObject equippedCharacter;
+    public GameObject? equippedCharacter;
     public GameObject? projectilePrefab;
     public bool isAttacking = false;
     private float lastAttackTimeSec = 0;
@@ -25,13 +27,24 @@ public class Weapon : MonoBehaviour
     public int slashMaxAngleDeg = 360;
     float passedSlashAngleDeg;
     System.Action? animateFunction;
+    Collider2D? physicsCollider;
 
     void Start()
     {
-        var collider = GetComponent<Collider2D>();
-        if (collider)
+        // One collider for physics, one for interacting with mouse
+        // Wish Unity got something better, even just naming...
+        var colliders = GetComponents<Collider2D>();
+        foreach (var collider in colliders)
         {
-            collider.enabled = false;
+            if (!collider.isTrigger)
+            {
+                physicsCollider = collider;
+                break;
+            }
+        }
+        if (physicsCollider != null)
+        {
+            physicsCollider.enabled = false;
         }
     }
 
@@ -40,6 +53,22 @@ public class Weapon : MonoBehaviour
         if (animateFunction is not null)
         {
             animateFunction();
+        }
+    }
+
+    void OnMouseOver()
+    {
+        if (!equippedCharacter)
+        {
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
+    }
+
+    void OnMouseExit()
+    {
+        if (!equippedCharacter)
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 
@@ -68,8 +97,8 @@ public class Weapon : MonoBehaviour
     {
         isAttacking = false;
         animateFunction = null;
-        GetComponent<Collider2D>().enabled = false;
-        var characterComponent = equippedCharacter.GetComponent<Character>();
+        physicsCollider!.enabled = false;
+        var characterComponent = equippedCharacter!.GetComponent<Character>();
         characterComponent.shouldRotateWeapon = true;
     }
 
@@ -78,8 +107,8 @@ public class Weapon : MonoBehaviour
         animateFunction = ThrustAttackAnimate;
         isAttacking = true;
         thrustGoOff = true;
-        GetComponent<Collider2D>().enabled = true;
-        var characterComponent = equippedCharacter.GetComponent<Character>();
+        physicsCollider!.enabled = true;
+        var characterComponent = equippedCharacter!.GetComponent<Character>();
         characterComponent.shouldRotateWeapon = false;
     }
 
@@ -112,8 +141,8 @@ public class Weapon : MonoBehaviour
     {
         animateFunction = SlashAttackAnimate;
         isAttacking = true;
-        GetComponent<Collider2D>().enabled = true;
-        var characterComponent = equippedCharacter.GetComponent<Character>();
+        physicsCollider!.enabled = true;
+        var characterComponent = equippedCharacter!.GetComponent<Character>();
         characterComponent.shouldRotateWeapon = false;
         passedSlashAngleDeg = 0;
         shouldFlipSlashRotation = Mathf.Abs(characterComponent.grabPointTransform.rotation.eulerAngles.z) > 180;
@@ -121,7 +150,7 @@ public class Weapon : MonoBehaviour
 
     void SlashAttackAnimate()
     {
-        var characterComponent = equippedCharacter.GetComponent<Character>();
+        var characterComponent = equippedCharacter!.GetComponent<Character>();
         var oldAngle = characterComponent.grabPointTransform.rotation.eulerAngles.z;
         var deltaAngle = (shouldFlipSlashRotation ? -slashRotateSpeed : slashRotateSpeed) * Time.deltaTime;
         var newAngle = oldAngle + deltaAngle;
@@ -152,7 +181,7 @@ public class Weapon : MonoBehaviour
     void RangedAttack()
     {
         var firePoint = transform.Find("FirePoint");
-        var projectile = Instantiate(projectilePrefab, firePoint.position, equippedCharacter.transform.rotation)!;
+        var projectile = Instantiate(projectilePrefab, firePoint.position, equippedCharacter!.transform.rotation)!;
         var projectileComponent = projectile.GetComponent<Projectile>();
         var characterComponent = equippedCharacter.GetComponent<Character>();
         projectileComponent.damage = damage;
@@ -162,5 +191,21 @@ public class Weapon : MonoBehaviour
             characterComponent.grabPointTransform.up * projectileComponent.speed
         );
         // projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
+    }
+
+    public void PickupBy(GameObject? character)
+    {
+        if (character == null)
+        {
+            transform.SetParent(null);
+            // transform.position = character.transform.position;
+        }
+        else
+        {
+            transform.SetParent(character.GetComponent<Character>().grabPointTransform);
+            transform.SetLocalPositionAndRotation(grabOffset, Quaternion.identity);
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        equippedCharacter = character;
     }
 }

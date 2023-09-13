@@ -20,14 +20,11 @@ public class WeaponManager : MonoBehaviour
     {
         if (currentWeapon != null)
         {
-            Destroy(currentWeapon);
+            // Destroy(currentWeapon);
+            currentWeapon.GetComponent<Weapon>().PickupBy(null);
         }
         currentWeapon = Instantiate(weapon);
-        // For offsets
-        var initialPosition = currentWeapon.transform.position;
-        currentWeapon.transform.SetParent(GetComponent<Character>().grabPointTransform);
-        currentWeapon.transform.localPosition = initialPosition;
-        currentWeapon.GetComponent<Weapon>().equippedCharacter = gameObject;
+        currentWeapon.GetComponent<Weapon>().PickupBy(gameObject);
     }
 
     public void Attack()

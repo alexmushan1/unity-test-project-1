@@ -5,19 +5,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     public Character characterComponent;
-    // Start is called before the first frame update
+
     void Start()
     {
         characterComponent = GetComponent<Character>();
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (!GlobalControl.isPaused)
         {
-
             HandleUserInput();
         }
     }
@@ -27,6 +25,7 @@ public class Player : MonoBehaviour
         MoveControl();
         WeaponRotationControl();
         AttackConctrol();
+        HandlePickUpWeapon();
     }
 
     void AttackConctrol()
@@ -50,9 +49,25 @@ public class Player : MonoBehaviour
     {
         if (characterComponent.shouldRotateWeapon)
         {
-
             var positionDelta = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             characterComponent.RotateHeadAndWeapon(Quaternion.LookRotation(Vector3.forward, positionDelta));
+        }
+    }
+
+    void HandlePickUpWeapon()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+            if (hit.collider.GetComponent<Weapon>())
+            {
+                var distance = (transform.position - hit.collider.transform.position).magnitude;
+                if (distance < characterComponent.weaponPickupRange)
+                {
+                    characterComponent.PickupWeapon(hit.collider.gameObject);
+                }
+            }
         }
     }
 }
