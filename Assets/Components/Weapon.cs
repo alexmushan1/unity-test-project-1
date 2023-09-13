@@ -54,11 +54,25 @@ public class Weapon : MonoBehaviour
         {
             animateFunction();
         }
+        if (!CanShowPickupIndicator())
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
+
+    bool CanShowPickupIndicator()
+    {
+        if (equippedCharacter)
+        {
+            return false;
+        }
+        var weaponPickupRange = GlobalControl.player.GetComponent<Character>().weaponPickupRange;
+        return (GlobalControl.player.transform.position - transform.position).magnitude < weaponPickupRange;
     }
 
     void OnMouseOver()
     {
-        if (!equippedCharacter)
+        if (CanShowPickupIndicator())
         {
             GetComponent<SpriteRenderer>().color = Color.yellow;
         }
@@ -66,7 +80,7 @@ public class Weapon : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (!equippedCharacter)
+        if (CanShowPickupIndicator())
         {
             GetComponent<SpriteRenderer>().color = Color.white;
         }
@@ -199,13 +213,14 @@ public class Weapon : MonoBehaviour
         {
             transform.SetParent(null);
             // transform.position = character.transform.position;
+            equippedCharacter = null;
         }
         else
         {
             transform.SetParent(character.GetComponent<Character>().grabPointTransform);
             transform.SetLocalPositionAndRotation(grabOffset, Quaternion.identity);
             GetComponent<SpriteRenderer>().color = Color.white;
+            equippedCharacter = character;
         }
-        equippedCharacter = character;
     }
 }

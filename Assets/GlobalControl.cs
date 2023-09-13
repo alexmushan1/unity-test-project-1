@@ -6,10 +6,12 @@ public class GlobalControl : MonoBehaviour
 {
     public static bool isPaused = false;
 
+    public static GameObject player;
     GameObject pauseScreen;
 
     void Start()
     {
+        player = GameObject.Find("Player");
         pauseScreen = GameObject.Find("PauseScreen");
         SetPause(false);
     }

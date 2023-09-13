@@ -69,6 +69,10 @@ PrefabInstance:
       value: TW fork
       objectReference: {fileID: 0}
     - target: {fileID: 538316522906377999, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 538316522906377999, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: m_Size.x
       value: 1.05
       objectReference: {fileID: 0}

@@ -49,6 +49,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1601470625697406631, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
+      propertyPath: isAttacking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1601470625697406631, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 0}
@@ -59,6 +63,10 @@ PrefabInstance:
     - target: {fileID: 256196966929886321, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: m_Name
       value: TW Ji
+      objectReference: {fileID: 0}
+    - target: {fileID: 538316522906377999, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
+      propertyPath: m_FlipX
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 538316522906377999, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: m_Size.x
