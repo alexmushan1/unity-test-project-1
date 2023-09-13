@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2602241561916043869, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
       propertyPath: damage
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2602241561916043869, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
       propertyPath: weaponType
@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2602241561916043869, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
       propertyPath: attackCooldownSec
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4535661072220611777, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
       propertyPath: m_Size.x

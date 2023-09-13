@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4efe51b94f654a45bac79bd6d3cdc0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 40
   weaponManager: {fileID: 0}
   initialWeapon: {fileID: 256196966929886321, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
   grabPointTransform: {fileID: 0}
