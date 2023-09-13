@@ -23,15 +23,17 @@ public class CameraController : MonoBehaviour
     {
         // Zoom input from the mouse scroll wheel
         float zoomInput = Input.GetAxis("Mouse ScrollWheel");
-
-        // Adjust the camera's orthographic size or field of view based on the zoom input
-        if (mainCamera.orthographic)
+        if (zoomInput != 0)
         {
-            mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize - zoomInput * zoomSpeed, minZoom, maxZoom);
-        }
-        else
-        {
-            mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView - zoomInput * zoomSpeed, minZoom, maxZoom);
+            // Adjust the camera's orthographic size or field of view based on the zoom input
+            if (mainCamera.orthographic)
+            {
+                mainCamera.orthographicSize = Mathf.Clamp(mainCamera.orthographicSize - zoomInput * zoomSpeed, minZoom, maxZoom);
+            }
+            else
+            {
+                mainCamera.fieldOfView = Mathf.Clamp(mainCamera.fieldOfView - zoomInput * zoomSpeed, minZoom, maxZoom);
+            }
         }
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
     }
