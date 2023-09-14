@@ -60,7 +60,11 @@ public class Player : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
-            if (hit.collider != null && hit.collider.GetComponent<Weapon>())
+            if (
+                hit.collider != null
+                && hit.collider.GetComponent<Weapon>()
+                && !hit.collider.GetComponent<Weapon>().equippedCharacter
+            )
             {
                 var distance = (transform.position - hit.collider.transform.position).magnitude;
                 if (distance < characterComponent.weaponPickupRange)
