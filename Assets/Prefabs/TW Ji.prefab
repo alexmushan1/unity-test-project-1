@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1601470625697406631, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: isAttacking
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1601470625697406631, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: projectilePrefab
