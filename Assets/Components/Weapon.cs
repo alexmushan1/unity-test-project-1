@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     public int thrustSpeed = 40;
     public int slashRotateSpeed = 600;
     public bool shouldFlipSlashRotation = false;
-    public int slashMaxAngleDeg = 360;
+    public int slashMaxAngleDeg = 400;
     float passedSlashAngleDeg;
     System.Action? animateFunction;
     Collider2D? physicsCollider;
