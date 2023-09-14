@@ -29,6 +29,11 @@ public class Weapon : MonoBehaviour
     System.Action? animateFunction;
     Collider2D? physicsCollider;
 
+    void Awake()
+    {
+        PickupBy(null);
+    }
+
     void Start()
     {
         // One collider for physics, one for interacting with mouse
@@ -214,6 +219,8 @@ public class Weapon : MonoBehaviour
             transform.SetParent(null);
             // transform.position = character.transform.position;
             equippedCharacter = null;
+            GetComponent<SpriteRenderer>().sortingLayerName = "Ground Item";
+            transform.position += Vector3.back;
         }
         else
         {
@@ -221,6 +228,7 @@ public class Weapon : MonoBehaviour
             transform.SetLocalPositionAndRotation(grabOffset, Quaternion.identity);
             GetComponent<SpriteRenderer>().color = Color.white;
             equippedCharacter = character;
+            GetComponent<SpriteRenderer>().sortingLayerName = "Weapon";
         }
     }
 }

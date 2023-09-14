@@ -915,8 +915,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 980598187
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1049,7 +1049,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 5
-      m_TileSpriteIndex: 5
+      m_TileSpriteIndex: 8
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1059,7 +1059,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 4
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1134,16 +1134,16 @@ Tilemap:
     m_Data: {fileID: -1154835304, guid: 659ec2c424a93b247b42e465df4f1bbd, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -254863544, guid: 659ec2c424a93b247b42e465df4f1bbd, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -146034954, guid: 659ec2c424a93b247b42e465df4f1bbd, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 863215404, guid: 659ec2c424a93b247b42e465df4f1bbd, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -1654848916, guid: 659ec2c424a93b247b42e465df4f1bbd, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1577658140, guid: 659ec2c424a93b247b42e465df4f1bbd, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 863215404, guid: 659ec2c424a93b247b42e465df4f1bbd, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 17
     m_Data:
@@ -1830,8 +1830,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 980598187
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d8a05f0e978904c4bb36b10e7619bba6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
