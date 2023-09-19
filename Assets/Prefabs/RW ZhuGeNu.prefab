@@ -102,7 +102,7 @@ MonoBehaviour:
   weaponType: 2
   grabOffset: {x: 0, y: 3}
   damage: 8
-  attackCooldownSec: 1
+  attackCooldownSec: 0.6
   range: 60
   equippedCharacter: {fileID: 0}
   projectilePrefab: {fileID: 4797313488220542134, guid: 48d6e68af99bad441be1eb6ae1b74d0a, type: 3}
