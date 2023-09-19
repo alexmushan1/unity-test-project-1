@@ -311,6 +311,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2447313241941856910, guid: 704252e6ac9d1814f9f8ad567fbd2d6b, type: 3}
+      propertyPath: speed
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -2447313241941856910, guid: 704252e6ac9d1814f9f8ad567fbd2d6b, type: 3}
       propertyPath: initialWeapon
       value: 
       objectReference: {fileID: 5644518665861037941, guid: 3636c8efb1dbe94418e70d35b5440e68, type: 3}
@@ -337,6 +341,10 @@ PrefabInstance:
     - target: {fileID: 315236917745407363, guid: 704252e6ac9d1814f9f8ad567fbd2d6b, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 763686903627064640, guid: 704252e6ac9d1814f9f8ad567fbd2d6b, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1454110990455986816, guid: 704252e6ac9d1814f9f8ad567fbd2d6b, type: 3}
       propertyPath: m_Name
@@ -1627,6 +1635,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2447313241941856910, guid: 704252e6ac9d1814f9f8ad567fbd2d6b, type: 3}
+      propertyPath: speed
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: -2447313241941856910, guid: 704252e6ac9d1814f9f8ad567fbd2d6b, type: 3}
       propertyPath: initialWeapon
       value: 
