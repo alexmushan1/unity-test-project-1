@@ -107,10 +107,11 @@ MonoBehaviour:
   equippedCharacter: {fileID: 0}
   projectilePrefab: {fileID: 4797313488220542134, guid: dfa77085a3e98244abbf8086730c74f0, type: 3}
   isAttacking: 0
-  thrustSpeed: 40
-  slashRotateSpeed: 600
-  shouldFlipSlashRotation: 0
+  thrustDurationSec: 0.4
+  slashDurationSec: 0.4
   slashMaxAngleDeg: 360
+  launchHeight: 20
+  launchDurationSec: 0.5
 --- !u!61 &8193373423881014711
 BoxCollider2D:
   m_ObjectHideFlags: 0

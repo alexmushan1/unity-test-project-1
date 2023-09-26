@@ -23,12 +23,15 @@ public class Weapon : MonoBehaviour
     public float thrustDurationSec = 0.4f;
     public float slashDurationSec = 0.4f;
     public int slashMaxAngleDeg = 400;
+    public int launchHeight = 20;
+    public float launchDurationSec = 0.5f;
     System.Action? animateFunction;
+    System.Action? onAttackDone;
     Collider2D? physicsCollider;
 
     void Awake()
     {
-        PickupBy(null);
+        UpdateSortingLayer();
     }
 
     void Start()
@@ -135,12 +138,13 @@ public class Weapon : MonoBehaviour
                 }
                 else
                 {
-                    DoneThrustAttack();
+                    onAttackDone?.Invoke();
                 }
                 return;
             }
             transform.localPosition = new Vector3(0, curve.Evaluate(Time.time), 0);
         };
+        onAttackDone = DoneThrustAttack;
         isAttacking = true;
         physicsCollider!.enabled = true;
         var characterComponent = equippedCharacter!.GetComponent<Character>();
@@ -164,12 +168,13 @@ public class Weapon : MonoBehaviour
         {
             if (Time.time > endTime)
             {
-                DoneSlashAttack();
+                onAttackDone?.Invoke();
                 return;
             }
             var characterComponent = equippedCharacter!.GetComponent<Character>();
             characterComponent.grabPointTransform.rotation = Quaternion.AngleAxis(curve.Evaluate(Time.time), Vector3.forward);
         };
+        onAttackDone = DoneSlashAttack;
         isAttacking = true;
         physicsCollider!.enabled = true;
         characterComponent.shouldRotateWeapon = false;
@@ -203,23 +208,73 @@ public class Weapon : MonoBehaviour
         // projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(100, 0));
     }
 
-    public void PickupBy(GameObject? character)
+    void UpdateSortingLayer()
     {
-        if (character == null)
+        if (equippedCharacter)
         {
-            transform.SetParent(null);
-            // transform.position = character.transform.position;
-            equippedCharacter = null;
-            GetComponent<SpriteRenderer>().sortingLayerName = "Ground Item";
-            transform.position += Vector3.back;
+            GetComponent<SpriteRenderer>().sortingLayerName = "Weapon";
         }
         else
         {
+            GetComponent<SpriteRenderer>().sortingLayerName = "Ground Item";
+            transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+        }
+    }
+
+    void Launch()
+    {
+        var endTime = Time.time + launchDurationSec / 2;
+        var initialY = transform.position.y;
+        var heightY = initialY + launchHeight;
+        var curve = AnimationCurve.EaseInOut(Time.time, initialY, endTime, heightY);
+        var goingUp = true;
+        animateFunction = () =>
+        {
+            if (Time.time > endTime)
+            {
+                if (goingUp)
+                {
+                    endTime = Time.time + launchDurationSec / 2;
+                    curve = AnimationCurve.EaseInOut(Time.time, heightY, endTime, initialY);
+                    goingUp = false;
+                }
+                else
+                {
+                    DoneLaunch();
+                }
+                return;
+            }
+            transform.position = new Vector3(transform.position.x, curve.Evaluate(Time.time), transform.position.z);
+        };
+    }
+
+    void DoneLaunch()
+    {
+        animateFunction = null;
+    }
+
+    public void PickupBy(GameObject? character)
+    {
+        if (character == equippedCharacter)
+        {
+            return;
+        }
+        if (character == null)
+        {
+            onAttackDone?.Invoke();
+            transform.SetParent(null);
+            // transform.position = character.transform.position;
+            equippedCharacter = null;
+            Launch();
+        }
+        else
+        {
+            DoneLaunch();
             transform.SetParent(character.GetComponent<Character>().grabPointTransform);
             transform.SetLocalPositionAndRotation(grabOffset, Quaternion.identity);
             GetComponent<SpriteRenderer>().color = Color.white;
             equippedCharacter = character;
-            GetComponent<SpriteRenderer>().sortingLayerName = "Weapon";
         }
+        UpdateSortingLayer();
     }
 }
