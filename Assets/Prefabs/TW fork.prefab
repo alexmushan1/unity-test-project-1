@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: attackCooldownSec
       value: 0.6
       objectReference: {fileID: 0}
+    - target: {fileID: -1601470625697406631, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
+      propertyPath: thrustDurationSec
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 256196966929886321, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: m_Name
       value: TW fork
