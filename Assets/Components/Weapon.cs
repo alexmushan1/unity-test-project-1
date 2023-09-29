@@ -123,23 +123,14 @@ public class Weapon : MonoBehaviour
 
     void ThrustAttack()
     {
-        var endTime = Time.time + thrustDurationSec / 2;
-        var curve = AnimationCurve.Linear(Time.time, 0, endTime, range);
-        var thrustGoOff = true;
+        var endTime = Time.time + thrustDurationSec;
+        var curve = AnimationCurve.Linear(Time.time, 0, Time.time + thrustDurationSec / 2, range);
+        curve.postWrapMode = WrapMode.PingPong;
         animateFunction = () =>
         {
             if (Time.time > endTime)
             {
-                if (thrustGoOff)
-                {
-                    endTime = Time.time + thrustDurationSec / 2;
-                    curve = AnimationCurve.Linear(Time.time, range, endTime, 0);
-                    thrustGoOff = false;
-                }
-                else
-                {
-                    onAttackDone?.Invoke();
-                }
+                onAttackDone?.Invoke();
                 return;
             }
             transform.localPosition = new Vector3(0, curve.Evaluate(Time.time), 0);
@@ -223,25 +214,16 @@ public class Weapon : MonoBehaviour
 
     void Launch()
     {
-        var endTime = Time.time + launchDurationSec / 2;
+        var endTime = Time.time + launchDurationSec;
         var initialY = transform.position.y;
         var heightY = initialY + launchHeight;
-        var curve = AnimationCurve.EaseInOut(Time.time, initialY, endTime, heightY);
-        var goingUp = true;
+        var curve = AnimationCurve.EaseInOut(Time.time, initialY, Time.time + launchDurationSec / 2, heightY);
+        curve.postWrapMode = WrapMode.PingPong;
         animateFunction = () =>
         {
             if (Time.time > endTime)
             {
-                if (goingUp)
-                {
-                    endTime = Time.time + launchDurationSec / 2;
-                    curve = AnimationCurve.EaseInOut(Time.time, heightY, endTime, initialY);
-                    goingUp = false;
-                }
-                else
-                {
-                    DoneLaunch();
-                }
+                DoneLaunch();
                 return;
             }
             transform.position = new Vector3(transform.position.x, curve.Evaluate(Time.time), transform.position.z);
