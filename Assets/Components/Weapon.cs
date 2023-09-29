@@ -222,7 +222,9 @@ public class Weapon : MonoBehaviour
         curve.postWrapMode = WrapMode.PingPong;
         // Can't edit this directly, remove and re-add needed
         var keyframe = curve.keys[0];
-        keyframe.outTangent = launchHeight / (launchDurationSec / 2);
+        var tangent = launchHeight / (launchDurationSec / 2);
+        keyframe.outTangent = tangent;
+        keyframe.inTangent = tangent;
         curve.MoveKey(0, keyframe);
         animateFunction = () =>
         {
