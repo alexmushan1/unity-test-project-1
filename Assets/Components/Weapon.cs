@@ -217,8 +217,13 @@ public class Weapon : MonoBehaviour
         var endTime = Time.time + launchDurationSec;
         var initialY = transform.position.y;
         var heightY = initialY + launchHeight;
+        // Want a ease out up and ease in down
         var curve = AnimationCurve.EaseInOut(Time.time, initialY, Time.time + launchDurationSec / 2, heightY);
         curve.postWrapMode = WrapMode.PingPong;
+        // Can't edit this directly, remove and re-add needed
+        var keyframe = curve.keys[0];
+        keyframe.outTangent = launchHeight / (launchDurationSec / 2);
+        curve.MoveKey(0, keyframe);
         animateFunction = () =>
         {
             if (Time.time > endTime)
