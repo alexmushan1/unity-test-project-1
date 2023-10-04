@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
         WeaponRotationControl();
         AttackConctrol();
         HandlePickUpWeapon();
+        if (Input.GetButtonDown("space"))
+        {
+            DashControl();
+        }
     }
 
     void AttackConctrol()
@@ -43,6 +47,21 @@ public class Player : MonoBehaviour
             Input.GetAxisRaw("Vertical")
         );
         characterComponent.Move(movement.normalized, Time.deltaTime);
+    }
+
+    //attempt to implement dashing
+    float currentDashTimeSec = Time.time;
+    void DashControl()
+    {
+        if (currentDashTimeSec != 0 && Time.time - currentDashTimeSec <= 0.5)
+        {
+            characterComponent.speed *= 4;
+        }
+        else
+        {
+            characterComponent.speed /= 4;
+        }
+        currentDashTimeSec = Time.time;
     }
 
     void WeaponRotationControl()
