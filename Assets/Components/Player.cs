@@ -39,6 +39,10 @@ public class Player : MonoBehaviour
 
     void MoveControl()
     {
+        if (!characterComponent.canMove)
+        {
+            return;
+        }
         var movement = new Vector2(
             Input.GetAxisRaw("Horizontal"),
             Input.GetAxisRaw("Vertical")
@@ -46,26 +50,12 @@ public class Player : MonoBehaviour
         characterComponent.Move(movement.normalized, Time.deltaTime);
     }
 
-    //attempt to implement dashing
-    bool dashing = false;
     void DashControl()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
-            if (dashing)
-            {
-                return;
-            }
-            dashing = true;
-            characterComponent.speed *= 4;
-            Invoke(nameof(EndDash), 0.5f);
+            characterComponent.Dash();
         }
-    }
-
-    void EndDash()
-    {
-        dashing = false;
-        characterComponent.speed /= 4;
     }
 
     void WeaponRotationControl()

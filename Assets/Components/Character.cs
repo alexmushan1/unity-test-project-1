@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ public class Character : MonoBehaviour
 
     // units per second
     public float speed = 10.0f;
+    public float dashSpeedMultiplier = 2f;
+    public float dashDurationSec = 0.5f;
+    public float dashCooldownSec = 1f;
     public float weaponPickupRange = 20;
     public WeaponManager weaponManager;
     public GameObject initialWeapon;
@@ -16,8 +20,12 @@ public class Character : MonoBehaviour
     public Transform headTransform;
 
     public bool shouldRotateWeapon = true;
+    public bool canMove = true;
 
     bool hitImmune = false;
+    Vector2 lastNormalizedMovement = Vector2.right;
+    float lastDashTime = 0;
+    Action? dashUpdateFn;
 
     // Start is called before the first frame update
     public void Start()
@@ -31,26 +39,31 @@ public class Character : MonoBehaviour
         weaponManager = gameObject.AddComponent<WeaponManager>();
         weaponManager.Init(initialWeapon);
     }
+
     // Update is called once per frame
     void Update()
     {
+        dashUpdateFn?.Invoke();
     }
 
     public void Move(Vector2 normalizedMovement, float deltaTime)
     {
         var movement = deltaTime * speed * normalizedMovement;
         transform.Translate(movement);
+
         if (movement == Vector2.zero) //when not moving
         {
             bodyTransform.GetComponent<Animator>().SetBool("running", false);
-            Vector3 bodyTilt = new Vector3(0, 0, 0);//reset tilt
+            Vector3 bodyTilt = new Vector3(0, 0, 0); //reset tilt
             Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
             bodyTransform.localRotation = bodyRotation;
         }
         else //when moving
         {
+            lastNormalizedMovement = normalizedMovement;
             bodyTransform.GetComponent<Animator>().SetBool("running", true);
         }
+
         if (movement.x != 0)
         {
             if (movement.x <= 0) //move left
@@ -72,6 +85,32 @@ public class Character : MonoBehaviour
 
             bodyTransform.GetComponent<SpriteRenderer>().flipX = movement.x < 0;
         }
+    }
+
+    public void Dash()
+    {
+        if (dashUpdateFn != null)
+        {
+            return;
+        }
+        if (lastDashTime != 0 && Time.time - lastDashTime < dashCooldownSec)
+        {
+            return;
+        }
+        lastDashTime = Time.time;
+        var startTime = Time.time;
+        canMove = false;
+        dashUpdateFn = () =>
+        {
+            if (Time.time - startTime >= dashDurationSec)
+            {
+                canMove = true;
+                dashUpdateFn = null;
+                return;
+            }
+            var movement = Time.deltaTime * speed * dashSpeedMultiplier * lastNormalizedMovement;
+            transform.Translate(movement);
+        };
     }
 
     public void RotateHeadAndWeapon(Quaternion rotation)

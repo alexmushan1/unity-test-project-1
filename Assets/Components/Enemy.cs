@@ -33,7 +33,6 @@ public class Enemy : MonoBehaviour
     {
         if (characterComponent.shouldRotateWeapon)
         {
-
             characterComponent.RotateHeadAndWeapon(Quaternion.LookRotation(Vector3.forward, player.transform.position - transform.position));
         }
     }
@@ -42,6 +41,10 @@ public class Enemy : MonoBehaviour
     float lastMoveTimeSec = 0;
     void HandleMove()
     {
+        if (!characterComponent.canMove)
+        {
+            return;
+        }
         if (lastMoveTimeSec != 0 && Time.time - lastMoveTimeSec < 0.5)
         {
             characterComponent.Move(lastMovement, Time.deltaTime);
