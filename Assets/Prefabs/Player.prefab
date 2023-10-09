@@ -52,12 +52,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
+  dashSpeedMultiplier: 2
+  dashDurationSec: 0.5
+  dashCooldownSec: 1
+  weaponPickupRange: 20
   weaponManager: {fileID: 0}
   initialWeapon: {fileID: 256196966929886321, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
   grabPointTransform: {fileID: 0}
   bodyTransform: {fileID: 0}
   headTransform: {fileID: 0}
+  dashMotion: 0
   shouldRotateWeapon: 1
+  canMove: 1
 --- !u!114 &763686903627064640
 MonoBehaviour:
   m_ObjectHideFlags: 0

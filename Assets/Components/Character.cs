@@ -9,8 +9,8 @@ public class Character : MonoBehaviour
 
     // units per second
     public float speed = 10.0f;
-    public float dashSpeedMultiplier = 2f;
-    public float dashDurationSec = 0.5f;
+    public float dashSpeedMultiplier = 3.5f;
+    public float dashDurationSec = 0.2f;
     public float dashCooldownSec = 1f;
     public float weaponPickupRange = 20;
     public WeaponManager weaponManager;
@@ -66,7 +66,7 @@ public class Character : MonoBehaviour
 
         if (movement.x != 0)
         {
-            if (movement.x <= 0) //move left
+            if (movement.x <= 0) //move left tilt motion
             {
                 Vector3 headPos = new Vector3(-1.2f, 4, 0);
                 headTransform.localPosition = headPos;
@@ -74,13 +74,16 @@ public class Character : MonoBehaviour
                 Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
                 bodyTransform.localRotation = bodyRotation;
             }
-            else //move right
+            else //move right tilt motion
             {
+
                 Vector3 headPos = new Vector3(1.2f, 4, 0);
                 headTransform.localPosition = headPos;
                 Vector3 bodyTilt = new Vector3(0, 0, -5);
                 Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
                 bodyTransform.localRotation = bodyRotation;
+
+
             }
 
             bodyTransform.GetComponent<SpriteRenderer>().flipX = movement.x < 0;
@@ -110,6 +113,23 @@ public class Character : MonoBehaviour
             }
             var movement = Time.deltaTime * speed * dashSpeedMultiplier * lastNormalizedMovement;
             transform.Translate(movement);
+            if (movement.x <= 0) //move left dash tilt
+            {
+                Vector3 headPos = new Vector3(-2.5f, 3.5f, 0);
+                headTransform.localPosition = headPos;
+                Vector3 bodyTilt = new Vector3(0, 0, 20);
+                Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
+                bodyTransform.localRotation = bodyRotation;
+            }
+            else // move right dash tilt
+            {
+                Vector3 headPos = new Vector3(2.5f, 3.5f, 0);
+                headTransform.localPosition = headPos;
+                Vector3 bodyTilt = new Vector3(0, 0, -20);
+                Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
+                bodyTransform.localRotation = bodyRotation;
+
+            }
         };
     }
 
