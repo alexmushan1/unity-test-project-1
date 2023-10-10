@@ -18,9 +18,16 @@ public class Character : MonoBehaviour
     public Transform grabPointTransform;
     public Transform bodyTransform;
     public Transform headTransform;
+    Vector2 initialHeadPosition;
 
     public bool shouldRotateWeapon = true;
     public bool canMove = true;
+    enum Facing
+    {
+        Left,
+        Right,
+    }
+    Facing facing = Facing.Right;
 
     bool hitImmune = false;
     Vector2 lastNormalizedMovement = Vector2.right;
@@ -34,6 +41,7 @@ public class Character : MonoBehaviour
         grabPointTransform = transform.Find("GrabPoint");
         bodyTransform = transform.Find("Body");
         headTransform = transform.Find("Head");
+        initialHeadPosition = headTransform.localPosition;
 
         // weaponManager = new WeaponManager(this, initialWeapon);
         weaponManager = gameObject.AddComponent<WeaponManager>();
@@ -46,6 +54,46 @@ public class Character : MonoBehaviour
         dashUpdateFn?.Invoke();
     }
 
+    void ApplyTiltAndFacing(float movementX, bool isDashing = false)
+    {
+        // Reset body tilt when stop moving
+        if (movementX == 0)
+        {
+            // headTransform.localPosition = Vector2.zero;
+            var position = initialHeadPosition;
+            if (facing == Facing.Left)
+            {
+                position.x = -position.x;
+            }
+            headTransform.localPosition = position;
+            bodyTransform.localRotation = Quaternion.identity;
+            return;
+        }
+
+        Vector2 headPos;
+        float bodyTiltAngleDeg;
+        if (isDashing)
+        {
+            headPos = new Vector2(2.5f, 3.5f);
+            bodyTiltAngleDeg = -20;
+        }
+        else
+        {
+            headPos = new Vector2(1.2f, 4);
+            bodyTiltAngleDeg = -5;
+        }
+        var isMovingLeft = movementX < 0;
+        if (isMovingLeft)
+        {
+            headPos.x = -headPos.x;
+            bodyTiltAngleDeg = -bodyTiltAngleDeg;
+        }
+        headTransform.localPosition = headPos;
+        bodyTransform.localRotation = Quaternion.AngleAxis(bodyTiltAngleDeg, Vector3.forward);
+        bodyTransform.GetComponent<SpriteRenderer>().flipX = isMovingLeft;
+        facing = isMovingLeft ? Facing.Left : Facing.Right;
+    }
+
     public void Move(Vector2 normalizedMovement, float deltaTime)
     {
         var movement = deltaTime * speed * normalizedMovement;
@@ -54,40 +102,13 @@ public class Character : MonoBehaviour
         if (movement == Vector2.zero) //when not moving
         {
             bodyTransform.GetComponent<Animator>().SetBool("running", false);
-            Vector3 bodyTilt = new Vector3(0, 0, 0); //reset tilt
-            Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
-            bodyTransform.localRotation = bodyRotation;
         }
         else //when moving
         {
             lastNormalizedMovement = normalizedMovement;
             bodyTransform.GetComponent<Animator>().SetBool("running", true);
         }
-
-        if (movement.x != 0)
-        {
-            if (movement.x <= 0) //move left tilt motion
-            {
-                Vector3 headPos = new Vector3(-1.2f, 4, 0);
-                headTransform.localPosition = headPos;
-                Vector3 bodyTilt = new Vector3(0, 0, 5);
-                Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
-                bodyTransform.localRotation = bodyRotation;
-            }
-            else //move right tilt motion
-            {
-
-                Vector3 headPos = new Vector3(1.2f, 4, 0);
-                headTransform.localPosition = headPos;
-                Vector3 bodyTilt = new Vector3(0, 0, -5);
-                Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
-                bodyTransform.localRotation = bodyRotation;
-
-
-            }
-
-            bodyTransform.GetComponent<SpriteRenderer>().flipX = movement.x < 0;
-        }
+        ApplyTiltAndFacing(movement.x);
     }
 
     public void Dash()
@@ -109,27 +130,12 @@ public class Character : MonoBehaviour
             {
                 canMove = true;
                 dashUpdateFn = null;
+                ApplyTiltAndFacing(0, true);
                 return;
             }
             var movement = Time.deltaTime * speed * dashSpeedMultiplier * lastNormalizedMovement;
             transform.Translate(movement);
-            if (movement.x <= 0) //move left dash tilt
-            {
-                Vector3 headPos = new Vector3(-2.5f, 3.5f, 0);
-                headTransform.localPosition = headPos;
-                Vector3 bodyTilt = new Vector3(0, 0, 20);
-                Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
-                bodyTransform.localRotation = bodyRotation;
-            }
-            else // move right dash tilt
-            {
-                Vector3 headPos = new Vector3(2.5f, 3.5f, 0);
-                headTransform.localPosition = headPos;
-                Vector3 bodyTilt = new Vector3(0, 0, -20);
-                Quaternion bodyRotation = Quaternion.Euler(bodyTilt);
-                bodyTransform.localRotation = bodyRotation;
-
-            }
+            ApplyTiltAndFacing(movement.x, true);
         };
     }
 
