@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
-  dashSpeedMultiplier: 2
-  dashDurationSec: 0.5
+  dashSpeedMultiplier: 3.5
+  dashDurationSec: 0.2
   dashCooldownSec: 1
   weaponPickupRange: 20
   weaponManager: {fileID: 0}
@@ -61,7 +61,6 @@ MonoBehaviour:
   grabPointTransform: {fileID: 0}
   bodyTransform: {fileID: 0}
   headTransform: {fileID: 0}
-  dashMotion: 0
   shouldRotateWeapon: 1
   canMove: 1
 --- !u!114 &763686903627064640
