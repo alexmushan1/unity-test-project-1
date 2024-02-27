@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     readonly Color LIGHT_ON_HIT_RED = new(1, 0.5f, 0.5f);
 
     // units per second
+    //temp
     public float speed = 10.0f;
     public float dashSpeedMultiplier = 3.0f;
     public float dashDurationSec = 0.2f;

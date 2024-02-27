@@ -318,6 +318,10 @@ PrefabInstance:
       propertyPath: initialWeapon
       value: 
       objectReference: {fileID: 5644518665861037941, guid: 3636c8efb1dbe94418e70d35b5440e68, type: 3}
+    - target: {fileID: -2447313241941856910, guid: 704252e6ac9d1814f9f8ad567fbd2d6b, type: 3}
+      propertyPath: dashSpeedMultiplier
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 315236917745407363, guid: 704252e6ac9d1814f9f8ad567fbd2d6b, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
