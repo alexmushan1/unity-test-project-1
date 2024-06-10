@@ -6,7 +6,7 @@ public class GlobalControl : MonoBehaviour
 {
     public static bool isPaused = false;
 
-    public static GameObject player;
+    public static GameObject? player;
     GameObject pauseScreen;
 
     void Start()
