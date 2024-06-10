@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    GameObject player;
+    GameObject? player;
     Camera mainCamera;
     public float zoomSpeed = 30.0f;
     public float minZoom = 10.0f;
@@ -23,7 +23,10 @@ public class CameraController : MonoBehaviour
         {
             HandleUserInput();
         }
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+        if (player != null)
+        {
+            transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+        }
     }
 
     void HandleUserInput()

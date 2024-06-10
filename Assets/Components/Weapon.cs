@@ -71,6 +71,10 @@ public class Weapon : MonoBehaviour
         {
             return false;
         }
+        if (GlobalControl.player == null)
+        {
+            return false;
+        }
         var weaponPickupRange = GlobalControl.player.GetComponent<Character>().weaponPickupRange;
         return (GlobalControl.player.transform.position - transform.position).magnitude < weaponPickupRange;
     }
