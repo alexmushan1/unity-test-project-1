@@ -73,6 +73,7 @@ public class Character : MonoBehaviour
 
         Vector2 headPos;
         float bodyTiltAngleDeg;
+        
         if (isDashing)
         {
             headPos = new Vector2(2.5f, 3.5f);
@@ -80,7 +81,8 @@ public class Character : MonoBehaviour
         }
         else
         {
-            headPos = new Vector2(1.2f, 4);
+            //headPos = new Vector2(1.2f, 4);
+            headPos = initialHeadPosition;
             bodyTiltAngleDeg = -5;
         }
         var isMovingLeft = movementX < 0;
