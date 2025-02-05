@@ -82,6 +82,7 @@ public class Character : MonoBehaviour
         else
         {
             //headPos = new Vector2(1.2f, 4);
+            //use initialHeadPosition instead so that if head was not at y=4 it can stay at what every y level
             headPos = initialHeadPosition;
             bodyTiltAngleDeg = -5;
         }
