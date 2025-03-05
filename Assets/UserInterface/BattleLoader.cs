@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class BackButton : MonoBehaviour
+public class BattleLoader : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        var button = GetComponent<Button>();
-        button.onClick.AddListener(() =>
+        transform.Find("Load Battle").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("Battle");
+        });
+        transform.Find("Back").GetComponent<Button>().onClick.AddListener(() =>
         {
             SceneManager.LoadScene("Start");
         });

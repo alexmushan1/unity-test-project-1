@@ -12,6 +12,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
+    public string DialogueTag;
     private int index;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -60,7 +61,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
         else
         {
             //gameObject.SetActive(false);
-            SceneManager.LoadScene("battle");
+            if (DialogueTag == "Dialogue 0")
+            {
+                SceneManager.LoadScene("Battle 0");
+            }
+            else if (DialogueTag == "Dialogue 1")
+            {
+                SceneManager.LoadScene("Battle 1");
+            }
         }
     }
 }

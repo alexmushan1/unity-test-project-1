@@ -73,10 +73,12 @@ public class Character : MonoBehaviour
 
         Vector2 headPos;
         float bodyTiltAngleDeg;
-        
+
         if (isDashing)
         {
-            headPos = new Vector2(2.5f, 3.5f);
+            //headPos = new Vector2(2.5f, 3.5f);
+            //remove predefined location for head, when dashing
+            headPos = initialHeadPosition + new Vector2(1.3f, -0.5f);
             bodyTiltAngleDeg = -20;
         }
         else

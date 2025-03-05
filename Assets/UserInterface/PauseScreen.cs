@@ -17,6 +17,10 @@ public class QuitButton : MonoBehaviour
         {
             Application.Quit();
         });
+        transform.Find("Back").GetComponent<Button>().onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("Start");
+        });
     }
 
     // Update is called once per frame
