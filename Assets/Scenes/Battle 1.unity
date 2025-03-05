@@ -1775,6 +1775,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 763686903627064640, guid: 2fa7d4ce6b1fddf45863bf9a18b921be, type: 3}
+      propertyPath: maxHealth
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 1454110990455986816, guid: 2fa7d4ce6b1fddf45863bf9a18b921be, type: 3}
       propertyPath: m_Name
       value: zhang fei

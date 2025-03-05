@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2602241561916043869, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
       propertyPath: attackCooldownSec
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 2602241561916043869, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
       propertyPath: launchDurationSec
