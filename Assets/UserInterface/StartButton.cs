@@ -12,7 +12,7 @@ public class StartButton : MonoBehaviour
         var button = GetComponent<Button>();
         button.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("Battle");
+            SceneManager.LoadScene("Dialogue");
         });
     }
 
