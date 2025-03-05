@@ -30,19 +30,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5836751771241860943, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.05
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: -5836751771241860943, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 6.96
+      value: 6.63
       objectReference: {fileID: 0}
     - target: {fileID: -1601470625697406631, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: range
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -1601470625697406631, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: damage
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -1601470625697406631, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: weaponType
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1601470625697406631, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: attackCooldownSec
-      value: 0.8
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -1601470625697406631, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: thrustDurationSec
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 256196966929886321, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: m_Name
-      value: TW Ji
+      value: TW She Mao
       objectReference: {fileID: 0}
     - target: {fileID: 538316522906377999, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: m_FlipX
@@ -83,7 +83,7 @@ PrefabInstance:
     - target: {fileID: 538316522906377999, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: dd4be6f954308ff42898c10f9a325b08, type: 3}
+      objectReference: {fileID: 1557879677831677296, guid: f4b33f91af0a8b843a6517d40798a950, type: 3}
     - target: {fileID: 538316522906377999, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -191,7 +191,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.05, y: 6.96}
+    oldSize: {x: 0.83, y: 6.63}
     newSize: {x: 1.05, y: 6.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
