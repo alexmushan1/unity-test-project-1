@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      liu bei armor_0: 4707316572876726373
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

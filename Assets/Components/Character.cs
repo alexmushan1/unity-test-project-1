@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     public float dashCooldownSec = 2.0f;
     public float weaponPickupRange = 20;
     public WeaponManager weaponManager;
-    public GameObject initialWeapon;
+    public GameObject? initialWeapon;
     public Transform grabPointTransform;
     public Transform bodyTransform;
     public Transform headTransform;
@@ -46,7 +46,10 @@ public class Character : MonoBehaviour
 
         // weaponManager = new WeaponManager(this, initialWeapon);
         weaponManager = gameObject.AddComponent<WeaponManager>();
-        weaponManager.Init(initialWeapon);
+        if (initialWeapon != null)
+        {
+            weaponManager.Init(initialWeapon);
+        }
     }
 
     // Update is called once per frame
@@ -150,7 +153,10 @@ public class Character : MonoBehaviour
         grabPointTransform.rotation = rotation;
         var shouldFlip = rotation.eulerAngles.z < 180;
         headTransform.GetComponent<SpriteRenderer>().flipX = shouldFlip;
-        weaponManager.currentWeapon.GetComponent<SpriteRenderer>().flipX = shouldFlip;
+        if (weaponManager.currentWeapon != null)
+        {
+            weaponManager.currentWeapon.GetComponent<SpriteRenderer>().flipX = shouldFlip;
+        }
     }
 
     public void PickupWeapon(GameObject weapon)
