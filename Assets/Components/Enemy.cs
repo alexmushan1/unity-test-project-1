@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
             if (currentWeapon != null)
             {
                 // Get aways from the player if we're in cooldown
-                if (!currentWeapon.CanAttack() && Random.value < 0.8)
+                if (!currentWeapon.isAttacking && currentWeapon.InCooldown() && Random.value < 0.8)
                 {
                     return (transform.position - player.transform.position).normalized;
                 }

@@ -121,11 +121,12 @@ public class Weapon : MonoBehaviour
     /// </summary>
     public bool CanAttack()
     {
-        if (isAttacking)
-        {
-            return false;
-        }
-        return lastAttackTimeSec == null || Time.time - lastAttackTimeSec > attackCooldownSec;
+        return !isAttacking && !InCooldown();
+    }
+
+    public bool InCooldown()
+    {
+        return lastAttackTimeSec != null && Time.time - lastAttackTimeSec < attackCooldownSec;
     }
 
     void BaseMeleeAttackDone()
