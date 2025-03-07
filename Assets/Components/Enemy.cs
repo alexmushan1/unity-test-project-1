@@ -51,14 +51,16 @@ public class Enemy : MonoBehaviour
     }
 
     Vector2 lastDirection;
-    float lastMoveTimeSec = 0;
+    float? lastMoveTimeSec;
     void HandleMove()
     {
         if (!characterComponent.canMove)
         {
             return;
         }
-        if (lastMoveTimeSec != 0 && Time.time - lastMoveTimeSec < 0.5)
+
+        // Continue to move in one direction for a little while
+        if (lastMoveTimeSec != null && Time.time - lastMoveTimeSec < 0.5)
         {
             characterComponent.Move(lastDirection, Time.deltaTime);
             return;
@@ -66,6 +68,11 @@ public class Enemy : MonoBehaviour
         lastDirection = GetMovingDirection();
         lastMoveTimeSec = Time.time;
         characterComponent.Move(lastDirection, Time.deltaTime);
+
+        if (characterComponent.CanDash() && Random.value < 0.3)
+        {
+            characterComponent.Dash();
+        }
     }
 
     Vector2 GetMovingDirection()

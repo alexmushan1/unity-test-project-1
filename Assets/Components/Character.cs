@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
 
     bool hitImmune = false;
     Vector2 lastNormalizedMovement = Vector2.right;
-    float lastDashTime = 0;
+    float? lastDashTime;
     Action? dashUpdateFn;
 
     // Start is called before the first frame update
@@ -122,11 +122,7 @@ public class Character : MonoBehaviour
 
     public void Dash()
     {
-        if (dashUpdateFn != null)
-        {
-            return;
-        }
-        if (lastDashTime != 0 && Time.time - lastDashTime < dashCooldownSec)
+        if (!CanDash())
         {
             return;
         }
@@ -146,6 +142,15 @@ public class Character : MonoBehaviour
             transform.Translate(movement);
             ApplyTiltAndFacing(movement.x, true);
         };
+    }
+
+    public bool CanDash()
+    {
+        if (dashUpdateFn != null)
+        {
+            return false;
+        }
+        return lastDashTime == null || Time.time - lastDashTime > dashCooldownSec;
     }
 
     public void RotateHeadAndWeapon(Quaternion rotation)
