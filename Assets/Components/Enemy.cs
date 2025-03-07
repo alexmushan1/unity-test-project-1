@@ -62,12 +62,12 @@ public class Enemy : MonoBehaviour
         // Continue to move in one direction for a little while
         if (lastMoveTimeSec != null && Time.time - lastMoveTimeSec < 0.5)
         {
-            characterComponent.Move(lastDirection, Time.deltaTime);
+            characterComponent.Move(lastDirection);
             return;
         }
         lastDirection = GetMovingDirection();
         lastMoveTimeSec = Time.time;
-        characterComponent.Move(lastDirection, Time.deltaTime);
+        characterComponent.Move(lastDirection);
 
         if (characterComponent.CanDash() && Random.value < 0.3)
         {
