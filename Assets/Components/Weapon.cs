@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour
     public GameObject? equippedCharacter;
     public GameObject? projectilePrefab;
     public bool isAttacking = false;
-    private float lastAttackTimeSec = 0;
+    private float? lastAttackTimeSec;
     public float thrustDurationSec = 0.4f;
     public float slashDurationSec = 0.4f;
     public int slashMaxAngleDeg = 400;
@@ -97,7 +97,7 @@ public class Weapon : MonoBehaviour
 
     public void Attack()
     {
-        if (isAttacking || (lastAttackTimeSec != 0 && Time.time - lastAttackTimeSec < attackCooldownSec))
+        if (!CanAttack())
         {
             return;
         }
@@ -114,6 +114,19 @@ public class Weapon : MonoBehaviour
                 RangedAttack();
                 break;
         }
+    }
+
+    /// <summary>
+    /// Not attacking nor in cooldown
+    /// </summary>
+    public bool CanAttack()
+    {
+        return !isAttacking && !InCooldown();
+    }
+
+    public bool InCooldown()
+    {
+        return lastAttackTimeSec != null && Time.time - lastAttackTimeSec < attackCooldownSec;
     }
 
     void BaseMeleeAttackDone()

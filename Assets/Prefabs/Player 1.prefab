@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -8787694588046953160}
   - component: {fileID: 3164999724631699574}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   dashCooldownSec: 1
   weaponPickupRange: 20
   weaponManager: {fileID: 0}
-  initialWeapon: {fileID: 256196966929886321, guid: 430e6c74acdac684ba40d470f1f5df55, type: 3}
+  initialWeapon: {fileID: 256196966929886321, guid: dee109a2502fdb64cbec64eb36837ebf, type: 3}
   grabPointTransform: {fileID: 0}
   bodyTransform: {fileID: 0}
   headTransform: {fileID: 0}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public GameObject currentWeapon;
+    public GameObject? currentWeapon;
 
     // public WeaponManager(Character character, GameObject initialWeapon)
     // {
@@ -29,6 +29,6 @@ public class WeaponManager : MonoBehaviour
 
     public void Attack()
     {
-        currentWeapon.GetComponent<Weapon>().Attack();
+        currentWeapon?.GetComponent<Weapon>().Attack();
     }
 }
