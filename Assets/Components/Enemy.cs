@@ -30,7 +30,12 @@ public class Enemy : MonoBehaviour
         {
             return false;
         }
-        return (transform.position - GameObject.Find("Player").transform.position).magnitude < GetComponent<WeaponManager>().currentWeapon.GetComponent<Weapon>().range + 20;
+        var currentWeapon = GetCurrentWeapon();
+        if (currentWeapon == null)
+        {
+            return false;
+        }
+        return (transform.position - GameObject.Find("Player").transform.position).magnitude < currentWeapon.range + 20;
 
     }
 
@@ -58,20 +63,52 @@ public class Enemy : MonoBehaviour
             characterComponent.Move(lastDirection, Time.deltaTime);
             return;
         }
-        if (player != null && Random.value < (GetCurrentWeaponType() == Weapon.WeaponType.Ranged ? 0.2 : 0.7))
-        {
-            lastDirection = (player.transform.position - transform.position).normalized;
-        }
-        else
-        {
-            lastDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-        }
+        lastDirection = GetMovingDirection();
         lastMoveTimeSec = Time.time;
         characterComponent.Move(lastDirection, Time.deltaTime);
     }
 
-    Weapon.WeaponType GetCurrentWeaponType()
+    Vector2 GetMovingDirection()
     {
-        return GetComponent<WeaponManager>().currentWeapon.GetComponent<Weapon>().weaponType;
+        if (player != null)
+        {
+            var currentWeapon = GetCurrentWeapon();
+            if (currentWeapon != null)
+            {
+                // Get aways from the player if we're in cooldown
+                if (!currentWeapon.CanAttack() && Random.value < 0.8)
+                {
+                    return (transform.position - player.transform.position).normalized;
+                }
+                // Get closer when we're far away from the player
+                if (Random.value < (currentWeapon.weaponType == Weapon.WeaponType.Ranged ? 0.2 : 0.7))
+                {
+                    return (player.transform.position - transform.position).normalized;
+                }
+            }
+        }
+        // Move randomly
+        return new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+    }
+
+    // Weapon.WeaponType? GetCurrentWeaponType()
+    // {
+    //     var currentWeapon = GetCurrentWeapon();
+    //     if (currentWeapon != null)
+    //     {
+    //         return currentWeapon.weaponType;
+    //     }
+    //     return null;
+    // }
+
+    Weapon? GetCurrentWeapon()
+    {
+        var currentWeapon = GetComponent<WeaponManager>().currentWeapon;
+        if (currentWeapon != null)
+        {
+            return currentWeapon.GetComponent<Weapon>();
+        }
+        return null;
+
     }
 }
