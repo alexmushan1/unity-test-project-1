@@ -9,11 +9,23 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: c5b36f5be937945479189652824acde0
   - enabled: 1
+    path: Assets/Scenes/Defeat.unity
+    guid: 7205eb45275b058478d46c8f47960513
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity
+    guid: 653e8edff94fa824c9601cc752a4c71e
+  - enabled: 1
     path: Assets/Scenes/Battle.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Battle 0.unity
+    path: Assets/Scenes/Battle P1.unity
     guid: 288b43c8771614e49a5cc736eec7a4f7
+  - enabled: 1
+    path: Assets/Scenes/Battle P2.unity
+    guid: f29c1228ee7275847bd0a8479efb3682
+  - enabled: 1
+    path: Assets/Scenes/Battle 0.unity
+    guid: aeeb4929253355f4b938a20a6ad5ea92
   - enabled: 1
     path: Assets/Scenes/Battle 1.unity
     guid: e90f5f7b11bb7524598d69f3420705d8
@@ -23,6 +35,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dialogue 1.unity
     guid: bd2c2e5f834079d449dd1652f0e554c5
+  - enabled: 1
+    path: Assets/Scenes/Dialogue P1.unity
+    guid: df1d80b9bad93b840856953991273e7d
+  - enabled: 1
+    path: Assets/Scenes/Dialogue P2.unity
+    guid: 640f73d684894274a96205f28df05b0b
+  - enabled: 1
+    path: Assets/Scenes/Dialogue P2-2.unity
+    guid: 1880a97d2c3a73848a2de3d2fee8b05e
+  - enabled: 1
+    path: Assets/Scenes/Dialogue P3.unity
+    guid: ab34a6dd83851b04b893337b001f6495
   - enabled: 1
     path: Assets/Scenes/Battle Loader.unity
     guid: 4bdfcfa27bd7c7c4a953299db7f09a21
