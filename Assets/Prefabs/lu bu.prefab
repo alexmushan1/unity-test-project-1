@@ -15,14 +15,14 @@ PrefabInstance:
     - target: {fileID: -2447313241941856910, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: initialWeapon
       value: 
-      objectReference: {fileID: 5644518665861037941, guid: 9a4e6c8021a08d942bcfb0b6a49bfaed, type: 3}
+      objectReference: {fileID: 5644518665861037941, guid: 426fe1c500025da47bddcba88291e814, type: 3}
     - target: {fileID: 315236917745407363, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.83
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 315236917745407363, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.1
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 763686903627064640, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: maxHealth
@@ -30,23 +30,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1454110990455986816, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: m_Name
-      value: Player x
+      value: lu bu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1720825735477182379, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.24199
       objectReference: {fileID: 0}
     - target: {fileID: 1720825735477182379, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.0371077
+      value: 3.282091
       objectReference: {fileID: 0}
     - target: {fileID: 1720825735477182379, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.0757978
+      value: 3.323902
       objectReference: {fileID: 0}
     - target: {fileID: 1720825735477182379, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.06
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 1720825735477182379, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.18
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 2100774307319389213, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -91,7 +95,7 @@ PrefabInstance:
     - target: {fileID: 2311534291391390314, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7ba9816073fadf44ab2fbadc019ce7c5, type: 3}
+      objectReference: {fileID: 2965292715599623153, guid: 7415a2c65b7ed844f92a238cff43f14c, type: 3}
     - target: {fileID: 3942311760593756491, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: m_text
       value: Lu Bu
@@ -103,9 +107,31 @@ PrefabInstance:
     - target: {fileID: 5411580680872432367, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 865c06047c72b5b4aa1011aff266a671, type: 3}
+      objectReference: {fileID: -3231586158308014458, guid: 129e718d4f4d57347a00f922f71d4a34, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1454110990455986816, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1618396643769406865}
   m_SourcePrefab: {fileID: 100100000, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
+--- !u!1 &803799773071943021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1454110990455986816, guid: 0f9f8999d85414041921f1e20602382f, type: 3}
+  m_PrefabInstance: {fileID: 2236496395620122605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1618396643769406865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803799773071943021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4595c94c32bb634caeeff6bb240fb8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueTag: LuBu
+  toDeath: 1

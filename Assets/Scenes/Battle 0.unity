@@ -763,7 +763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 157294507680523248, guid: 041dacc41765cb94c8f7da4b9a14bc95, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.080368
+      value: -46
       objectReference: {fileID: 0}
     - target: {fileID: 157294507680523248, guid: 041dacc41765cb94c8f7da4b9a14bc95, type: 3}
       propertyPath: m_LocalPosition.z
@@ -800,6 +800,10 @@ PrefabInstance:
     - target: {fileID: 803799773071943021, guid: 041dacc41765cb94c8f7da4b9a14bc95, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553892152351644333, guid: 041dacc41765cb94c8f7da4b9a14bc95, type: 3}
+      propertyPath: maxHealth
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1020,8 +1024,8 @@ Transform:
   m_GameObject: {fileID: 1224143519}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1513, y: -0.012301, z: 0}
-  m_LocalScale: {x: 40.020054, y: 22.431126, z: 1}
+  m_LocalPosition: {x: 0.1513, y: -60.3, z: 0}
+  m_LocalScale: {x: 30, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1101,6 +1105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4595c94c32bb634caeeff6bb240fb8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogueTag: Battle 0
+  toDeath: 0
 --- !u!1 &1510938977
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,7 +1289,7 @@ SpriteRenderer:
   m_SortingLayerID: 980598187
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2595239721339661541, guid: bb3e58e736467a448a6a93f50b5e88b1, type: 3}
+  m_Sprite: {fileID: -8085466149673904278, guid: b19932ac36351784e91b375cda8e5825, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1304,7 +1310,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.4049, y: 36.7225, z: 1}
-  m_LocalScale: {x: 47.370956, y: 40.148605, z: 20}
+  m_LocalScale: {x: 55, y: 46.6145, z: 23.22098}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1617,7 +1623,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 763686903627064640, guid: 2fa7d4ce6b1fddf45863bf9a18b921be, type: 3}
       propertyPath: maxHealth
-      value: 600
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 1454110990455986816, guid: 2fa7d4ce6b1fddf45863bf9a18b921be, type: 3}
       propertyPath: m_Name
@@ -1629,7 +1635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2100774307319389213, guid: 2fa7d4ce6b1fddf45863bf9a18b921be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.697563
+      value: -37.3
       objectReference: {fileID: 0}
     - target: {fileID: 2100774307319389213, guid: 2fa7d4ce6b1fddf45863bf9a18b921be, type: 3}
       propertyPath: m_LocalPosition.z

@@ -69,6 +69,26 @@ public class NewMonoBehaviourScript : MonoBehaviour
             {
                 SceneManager.LoadScene("Battle 1");
             }
+            else if (DialogueTag == "Dialogue P1")
+            {
+                SceneManager.LoadScene("Battle P1");
+            }
+            else if (DialogueTag == "Dialogue P2")
+            {
+                SceneManager.LoadScene("Dialogue P2-2");
+            }
+            else if (DialogueTag == "Dialogue P2-2")
+            {
+                SceneManager.LoadScene("Battle P2");
+            }
+            else if (DialogueTag == "Dialogue P3")
+            {
+                SceneManager.LoadScene("Dialogue 0");
+            }
+            else if (DialogueTag == "Victory" || DialogueTag == "Defeat")
+            {
+                SceneManager.LoadScene("Start");
+            }
         }
     }
 }
