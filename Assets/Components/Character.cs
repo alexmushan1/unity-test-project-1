@@ -103,12 +103,12 @@ public class Character : MonoBehaviour
         facing = isMovingLeft ? Facing.Left : Facing.Right;
     }
 
-    public void Move(Vector2 normalizedMovement)
+    public void Move(Vector2 normalizedMovement, float deltaTime)
     {
-        var movement = normalizedMovement * speed;
-        GetComponent<Rigidbody2D>().linearVelocity = movement;
+        var movement = deltaTime * speed * normalizedMovement;
+        transform.Translate(movement);
 
-        if (normalizedMovement == Vector2.zero) //when not moving
+        if (movement == Vector2.zero) //when not moving
         {
             bodyTransform.GetComponent<Animator>().SetBool("running", false);
         }
@@ -117,7 +117,7 @@ public class Character : MonoBehaviour
             lastNormalizedMovement = normalizedMovement;
             bodyTransform.GetComponent<Animator>().SetBool("running", true);
         }
-        ApplyTiltAndFacing(normalizedMovement.x);
+        ApplyTiltAndFacing(movement.x);
     }
 
     public void Dash()
@@ -138,8 +138,8 @@ public class Character : MonoBehaviour
                 ApplyTiltAndFacing(0, true);
                 return;
             }
-            var movement = speed * dashSpeedMultiplier * lastNormalizedMovement;
-            GetComponent<Rigidbody2D>().linearVelocity = movement;
+            var movement = Time.deltaTime * speed * dashSpeedMultiplier * lastNormalizedMovement;
+            transform.Translate(movement);
             ApplyTiltAndFacing(movement.x, true);
         };
     }

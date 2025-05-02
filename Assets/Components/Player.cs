@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
             Input.GetAxisRaw("Horizontal"),
             Input.GetAxisRaw("Vertical")
         );
-        characterComponent.Move(movement.normalized);
+        characterComponent.Move(movement.normalized, Time.deltaTime);
     }
 
     void DashControl()
