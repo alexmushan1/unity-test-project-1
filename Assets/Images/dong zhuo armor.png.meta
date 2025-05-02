@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dong zhuo armor_0: -3267372490163858400
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

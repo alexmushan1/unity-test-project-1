@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      river battle_0: -8085466149673904278
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

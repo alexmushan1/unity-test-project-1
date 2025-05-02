@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dong zhuo head_0: -2464119385229248412
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
