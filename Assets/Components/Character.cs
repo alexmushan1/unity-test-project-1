@@ -56,6 +56,7 @@ public class Character : MonoBehaviour
     void Update()
     {
         dashUpdateFn?.Invoke();
+        RestrictInWorld();
     }
 
     void ApplyTiltAndFacing(float movementX, bool isDashing = false)
@@ -118,6 +119,12 @@ public class Character : MonoBehaviour
             bodyTransform.GetComponent<Animator>().SetBool("running", true);
         }
         ApplyTiltAndFacing(movement.x);
+    }
+
+    public void RestrictInWorld()
+    {
+        // TODO: Move this hard coded value to somewhere else
+        transform.position = new Vector3(Math.Clamp(transform.position.x, -200, 200), Math.Clamp(transform.position.y, -150, 200));
     }
 
     public void Dash()
