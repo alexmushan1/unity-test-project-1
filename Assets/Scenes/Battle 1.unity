@@ -721,7 +721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!68 &719470092
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -890,10 +890,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 763686903627064640, guid: 1d9899004877243498e1f60c8c66ce07, type: 3}
-      propertyPath: maxHealth
-      value: 550
-      objectReference: {fileID: 0}
     - target: {fileID: 157294507680523248, guid: 041dacc41765cb94c8f7da4b9a14bc95, type: 3}
       propertyPath: m_LocalPosition.x
       value: -61.91672
@@ -941,6 +937,10 @@ PrefabInstance:
     - target: {fileID: 1553892152351644333, guid: 041dacc41765cb94c8f7da4b9a14bc95, type: 3}
       propertyPath: maxHealth
       value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 763686903627064640, guid: 1d9899004877243498e1f60c8c66ce07, type: 3}
+      propertyPath: maxHealth
+      value: 550
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
