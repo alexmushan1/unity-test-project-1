@@ -63,5 +63,9 @@ public class HalfHealthCondition : MonoBehaviour
         {
             SceneManager.LoadScene("Victory");
         }
+        else if (DialogueTag == "Tutorial D2")
+        {
+            SceneManager.LoadScene("Tutorial D2");
+        }
     }
 }

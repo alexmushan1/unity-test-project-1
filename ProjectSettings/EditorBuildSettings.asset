@@ -50,5 +50,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Battle Loader.unity
     guid: 4bdfcfa27bd7c7c4a953299db7f09a21
+  - enabled: 1
+    path: Assets/Scenes/Tutorial Battle.unity
+    guid: 5bce729872d6bb84589452a2890678a8
+  - enabled: 1
+    path: Assets/Scenes/Tutorial D2.unity
+    guid: d738c1548ae7c6c4da7d3db361aa1f38
+  - enabled: 1
+    path: Assets/Scenes/Tutorial D1.unity
+    guid: a10f4ffe9d9ce59419de551232ac6e8c
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

@@ -89,6 +89,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
             {
                 SceneManager.LoadScene("Start");
             }
+            else if (DialogueTag == "Tutorial D1")
+            {
+                SceneManager.LoadScene("Tutorial Battle");
+            }
+            else if (DialogueTag == "Tutorial D2")
+            {
+                SceneManager.LoadScene("Start");
+            }
         }
     }
 }
