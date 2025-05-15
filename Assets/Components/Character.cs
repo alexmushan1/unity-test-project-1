@@ -8,7 +8,6 @@ public class Character : MonoBehaviour
     readonly Color LIGHT_ON_HIT_RED = new(1, 0.5f, 0.5f);
 
     // units per second
-    //temp
     public float speed = 10.0f;
     public float dashSpeedMultiplier = 3.0f;
     public float dashDurationSec = 0.2f;
@@ -20,6 +19,7 @@ public class Character : MonoBehaviour
     public Transform bodyTransform;
     public Transform headTransform;
     Vector2 initialHeadPosition;
+    EdgeCollider2D? mapEdge;
 
     public bool shouldRotateWeapon = true;
     public bool canMove = true;
@@ -50,12 +50,19 @@ public class Character : MonoBehaviour
         {
             weaponManager.Init(initialWeapon);
         }
+
+        var mapEdgeObj = GameObject.Find("MapEdge");
+        if (mapEdgeObj)
+        {
+            mapEdge = mapEdgeObj.GetComponent<EdgeCollider2D>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         dashUpdateFn?.Invoke();
+        RestrictInWorld();
     }
 
     void ApplyTiltAndFacing(float movementX, bool isDashing = false)
@@ -118,6 +125,17 @@ public class Character : MonoBehaviour
             bodyTransform.GetComponent<Animator>().SetBool("running", true);
         }
         ApplyTiltAndFacing(movement.x);
+    }
+
+    public void RestrictInWorld()
+    {
+        if (mapEdge)
+        {
+            transform.position = new Vector3(
+                Math.Clamp(transform.position.x, mapEdge.bounds.min.x, mapEdge.bounds.max.x),
+                Math.Clamp(transform.position.y, mapEdge.bounds.min.y, mapEdge.bounds.max.y)
+            );
+        }
     }
 
     public void Dash()
