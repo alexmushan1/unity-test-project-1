@@ -34,8 +34,16 @@ public class Character : MonoBehaviour
     Vector2 lastNormalizedMovement = Vector2.right;
     float? lastDashTime;
     Action? dashUpdateFn;
-
+    [SerializeField] HealthBar healthBar;
     // Start is called before the first frame update
+    public void Awake()
+    {
+        //set up health bar
+        if (GetComponent<HealthBar>() != null)
+        {
+            healthBar = GetComponent<HealthBar>();
+        }
+    }
     public void Start()
     {
         // grabPoint = GameObject.Find("GrabPoint");
@@ -43,7 +51,12 @@ public class Character : MonoBehaviour
         bodyTransform = transform.Find("Body");
         headTransform = transform.Find("Head");
         initialHeadPosition = headTransform.localPosition;
-
+        //healthbar related
+        if (GetComponent<HealthBar>() != null)
+        {
+            var healthComponent = GetComponent<Health>();
+            healthBar.updateHealthbar(healthComponent.currentHealth, healthComponent.maxHealth); //reset healthbar
+        }
         // weaponManager = new WeaponManager(this, initialWeapon);
         weaponManager = gameObject.AddComponent<WeaponManager>();
         if (initialWeapon != null)
@@ -194,12 +207,17 @@ public class Character : MonoBehaviour
             return;
         }
         var healthComponent = GetComponent<Health>();
+
         if (damage >= healthComponent.currentHealth)
         {
             Destroy(gameObject);
             return;
         }
         healthComponent.currentHealth -= damage;
+        if (GetComponent<HealthBar>() != null)
+        {
+            healthBar.updateHealthbar(healthComponent.currentHealth, healthComponent.maxHealth); //added for healthbar
+        }
         headTransform.GetComponent<SpriteRenderer>().color = LIGHT_ON_HIT_RED;
         bodyTransform.GetComponent<SpriteRenderer>().color = LIGHT_ON_HIT_RED;
         Invoke(nameof(AfterHitImmune), 0.1f);
