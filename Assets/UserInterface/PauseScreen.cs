@@ -15,7 +15,7 @@ public class QuitButton : MonoBehaviour
         });
         transform.Find("Quit").GetComponent<Button>().onClick.AddListener(() =>
         {
-            Application.Quit();
+            //Application.Quit();
         });
         transform.Find("Back").GetComponent<Button>().onClick.AddListener(() =>
         {
