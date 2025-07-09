@@ -1,4 +1,10 @@
 {
     "editor.formatOnSave": true,
     "editor.acceptSuggestionOnCommitCharacter": false,
+    "files.associations": {
+        "*.asset": "yaml",
+        "*.meta": "yaml",
+        "*.prefab": "yaml",
+        "*.unity": "yaml",
+    },
 }
